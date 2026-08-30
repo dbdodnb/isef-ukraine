@@ -1,10 +1,10 @@
 import React from 'react';
+import Categories_content from '../components/Categories_content';
 
 const Categories = () => {
   return (
-    <div className="page-container">
-      <h1>Категорії</h1>
-      <p>Тут буде інформація про категорії проєкту.</p>
+    <div className="padding">
+      <Categories_content />
     </div>
   );
 };

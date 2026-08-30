@@ -104,6 +104,8 @@ $light-blue: #7AADDC
                     transition: all 0.3s ease-in-out
                     &:hover
                         color: $yellow
+                .active
+                    color: $yellow
         
     .logo
         width: 20%
@@ -392,3 +394,50 @@ $light-blue: #7AADDC
     align-items: center
     justify-content: center
     box-shadow: -8px -8px 16px rgba(255, 255, 255, 0.7)
+
+.categories__content
+    width: 100%
+    min-height: 300px
+    margin-top: 140px
+    background-color: $bg-color
+    border-radius: 30px
+    box-shadow: -8px -8px 16px rgba(255, 255, 255, 0.7), 8px 8px 16px rgba(163, 177, 198, 0.6)
+    box-sizing: border-box
+    padding: 50px
+    text-align: center
+    display: flex
+    flex-wrap: wrap
+    justify-content: space-between
+    align-items: start
+    .categories__element
+        display: inline-block
+        width: 30%
+        min-height: 100px
+        display: flex
+        justify-content: center
+        align-items: center
+        margin-top: 20px
+        background-color: $bg-color
+        box-shadow: -8px -8px 16px rgba(255, 255, 255, 0.7), 8px 8px 16px rgba(163, 177, 198, 0.6)
+        border-radius: 30px
+        box-sizing: border-box
+        padding: 20px
+        &::after
+            content: ""
+            display: inline-block
+            width: 15px
+            height: 15px
+            margin-left: 0.4em
+            background: url('img/arrow.svg')
+            background-repeat: no-repeat
+            background-size: 15px 15px
+        &:hover
+            box-shadow: inset -8px -8px 16px rgba(255, 255, 255, 0.7), inset 8px 8px 16px rgba(163, 177, 198, 0.6)
+            filter: brightness(0.95)
+        .category__text
+            width: 85%
+    .categories__heading
+        width: 100%
+    .categories__text
+        margin-top: 20px
+        width: 100%

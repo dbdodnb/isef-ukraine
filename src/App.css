@@ -113,6 +113,9 @@ body {
 .nav .links ul li a:hover {
   color: #FFC927;
 }
+.nav .links ul li .active {
+  color: #FFC927;
+}
 .nav .logo {
   width: 20%;
   height: 100px;
@@ -440,4 +443,58 @@ body {
   align-items: center;
   justify-content: center;
   box-shadow: -8px -8px 16px rgba(255, 255, 255, 0.7);
+}
+
+.categories__content {
+  width: 100%;
+  min-height: 300px;
+  margin-top: 140px;
+  background-color: #EFF3FA;
+  border-radius: 30px;
+  box-shadow: -8px -8px 16px rgba(255, 255, 255, 0.7), 8px 8px 16px rgba(163, 177, 198, 0.6);
+  box-sizing: border-box;
+  padding: 50px;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: start;
+}
+.categories__content .categories__element {
+  display: inline-block;
+  width: 30%;
+  min-height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  background-color: #EFF3FA;
+  box-shadow: -8px -8px 16px rgba(255, 255, 255, 0.7), 8px 8px 16px rgba(163, 177, 198, 0.6);
+  border-radius: 30px;
+  box-sizing: border-box;
+  padding: 20px;
+}
+.categories__content .categories__element::after {
+  content: "";
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  margin-left: 0.4em;
+  background: url("img/arrow.svg");
+  background-repeat: no-repeat;
+  background-size: 15px 15px;
+}
+.categories__content .categories__element:hover {
+  box-shadow: inset -8px -8px 16px rgba(255, 255, 255, 0.7), inset 8px 8px 16px rgba(163, 177, 198, 0.6);
+  filter: brightness(0.95);
+}
+.categories__content .categories__element .category__text {
+  width: 85%;
+}
+.categories__content .categories__heading {
+  width: 100%;
+}
+.categories__content .categories__text {
+  margin-top: 20px;
+  width: 100%;
 }/*# sourceMappingURL=App.css.map */

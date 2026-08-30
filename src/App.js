@@ -1,26 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+
 import Nav from './components/Nav';
-import Header from './components/Header';
-import Updates from './components/Updates';
-import Timeline from './components/Timeline';
-import Materials from './components/Materials';
-import Partners from './components/Partners';
 import Footer from './components/Footer';
 import Copyright from './components/Copyright';
 
+import Home from './pages/Home';
+import Categories from './pages/Categories';
+import Participants from './pages/Participants';
+import Results from './pages/Results';
+
+import './App.css';
+
 function App() {
   return (
-    <>
-      <Nav />
-      <Header />
-      <Updates />
-      <Timeline />
-      <Materials />
-      <Partners />
-      <Footer />
-      <Copyright />
-    </>
+    <Router>
+      <div className='App'>
+        <Nav />
+
+        <div className='main-content'>
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path="/categories" element={<Categories />} />
+            <Route path="/participants" element={<Participants />} />
+            <Route path="/results" element={<Results />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </div>
+        <Footer />
+        <Copyright />
+      </div>
+    </Router>
   );
 }
 

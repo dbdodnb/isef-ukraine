@@ -7,6 +7,7 @@ import Timeline from './components/Timeline';
 import Materials from './components/Materials';
 import Partners from './components/Partners';
 import Footer from './components/Footer';
+import Copyright from './components/Copyright';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Materials />
       <Partners />
       <Footer />
+      <Copyright />
     </>
   );
 }

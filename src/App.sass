@@ -45,6 +45,7 @@ body
     background-color: #EFF3FA
     background-repeat: no-repeat
     background-size: cover
+    background-attachment: fixed
 
 @font-face
     font-family: "KyivType Sans"
@@ -58,13 +59,15 @@ body
     font-family: "KyivType Sans"
     font-size: 25px
 
-.text
-    font-family: "eUkraine"
-    font-size: 18px
-
 $yellow: #FFC927
 $bg-color: #EFF3FA
 $blue: #045485
+$text-color: #444444
+
+.text
+    font-family: "eUkraine"
+    font-size: 18px
+    color: $text-color
 
 .nav
     position: fixed
@@ -287,3 +290,41 @@ $blue: #045485
     .timeline-icon
         background-color: $bg-color
         border-color: $yellow
+
+.materials
+    width: 100%
+    min-height: 200px
+    margin-top: 20px
+    border-radius: 30px
+    background-color: $bg-color
+    box-shadow: -8px -8px 16px rgba(255, 255, 255, 0.7), 8px 8px 16px rgba(163, 177, 198, 0.6)
+    padding: 50px
+    box-sizing: border-box
+    display: flex
+    flex-wrap: wrap
+    justify-content: space-between
+    .materials__element
+        background: $bg-color
+        box-shadow: -8px -8px 16px rgba(255, 255, 255, 0.7), 8px 8px 16px rgba(163, 177, 198, 0.6)
+        width: 30%
+        min-height: 100px
+        margin-top: 50px
+        border-radius: 30px
+        display: flex
+        justify-content: center
+        align-items: center
+        &:hover
+            box-shadow: inset -8px -8px 16px rgba(255, 255, 255, 0.7), inset 8px 8px 16px rgba(163, 177, 198, 0.6)
+            filter: brightness(0.95)
+        .materials__text::after
+            content: ""
+            display: inline-block
+            width: 1em
+            height: 1em
+            margin-left: 0.4em
+            background: url('img/arrow.svg')
+            background-repeat: no-repeat
+            background-size: contain
+    .materials__heading
+        text-align: center
+        width: 100%

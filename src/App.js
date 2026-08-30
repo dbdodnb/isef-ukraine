@@ -4,6 +4,7 @@ import Nav from './components/Nav';
 import Header from './components/Header';
 import Updates from './components/Updates';
 import Timeline from './components/Timeline';
+import Materials from './components/Materials';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Header />
       <Updates />
       <Timeline />
+      <Materials />
     </>
   );
 }

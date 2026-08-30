@@ -53,6 +53,7 @@ body {
   background-color: #EFF3FA;
   background-repeat: no-repeat;
   background-size: cover;
+  background-attachment: fixed;
 }
 
 @font-face {
@@ -71,6 +72,7 @@ body {
 .text {
   font-family: "eUkraine";
   font-size: 18px;
+  color: #444444;
 }
 
 .nav {
@@ -323,4 +325,47 @@ body {
 .timeline-item.active .timeline-icon {
   background-color: #EFF3FA;
   border-color: #FFC927;
+}
+
+.materials {
+  width: 100%;
+  min-height: 200px;
+  margin-top: 20px;
+  border-radius: 30px;
+  background-color: #EFF3FA;
+  box-shadow: -8px -8px 16px rgba(255, 255, 255, 0.7), 8px 8px 16px rgba(163, 177, 198, 0.6);
+  padding: 50px;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.materials .materials__element {
+  background: #EFF3FA;
+  box-shadow: -8px -8px 16px rgba(255, 255, 255, 0.7), 8px 8px 16px rgba(163, 177, 198, 0.6);
+  width: 30%;
+  min-height: 100px;
+  margin-top: 50px;
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.materials .materials__element:hover {
+  box-shadow: inset -8px -8px 16px rgba(255, 255, 255, 0.7), inset 8px 8px 16px rgba(163, 177, 198, 0.6);
+  filter: brightness(0.95);
+}
+.materials .materials__element .materials__text::after {
+  content: "";
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-left: 0.4em;
+  background: url("img/arrow.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.materials .materials__heading {
+  text-align: center;
+  width: 100%;
 }/*# sourceMappingURL=App.css.map */

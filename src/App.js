@@ -11,10 +11,12 @@ import Participants from './pages/Participants';
 import Results from './pages/Results';
 
 import './App.css';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <div className='App'>
         <Nav />
 

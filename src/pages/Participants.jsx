@@ -1,10 +1,10 @@
 import React from 'react';
+import Participants_content from '../components/Participants_content';
 
 const Participants = () => {
   return (
-    <div className="page-container">
-      <h1>Учасники</h1>
-      <p>Тут буде інформація про учасників проєкту.</p>
+    <div className="padding">
+        <Participants_content />
     </div>
   );
 };

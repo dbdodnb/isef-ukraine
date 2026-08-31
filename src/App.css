@@ -545,4 +545,110 @@ body {
     opacity: 1;
     transform: translateY(0);
   }
+}
+.participants__content {
+  width: 100%;
+  margin-top: 140px;
+  background-color: #EFF3FA;
+  border-radius: 30px;
+  box-shadow: -8px -8px 16px rgba(255, 255, 255, 0.7), 8px 8px 16px rgba(163, 177, 198, 0.6);
+  padding: 40px;
+  box-sizing: border-box;
+}
+.participants__content .tabs__header {
+  display: flex;
+  gap: 15px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+  padding-bottom: 15px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+.participants__content .tabs__header .tab__button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 15px;
+  background-color: #EFF3FA;
+  font-size: 16px;
+  font-family: "KyivType Sans";
+  color: #444444;
+  box-shadow: -4px -4px 10px rgba(255, 255, 255, 0.8), 4px 4px 10px rgba(163, 177, 198, 0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.participants__content .tabs__header .tab__button.active {
+  background-color: #EFF3FA;
+  color: #000;
+  box-shadow: inset -4px -4px 10px rgba(255, 255, 255, 0.8), inset 4px 4px 10px rgba(163, 177, 198, 0.5);
+  filter: brightness(0.95);
+}
+.participants__content .tabs__body {
+  width: 100%;
+  text-align: left;
+  animation: fadeIn 0.4s ease;
+}
+.participants__content .tabs__body h3 {
+  margin-bottom: 15px;
+  color: #333;
+}
+.participants__content .tabs__body p {
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+.participants__content .tabs__body ul, .participants__content .tabs__body ol {
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+.participants__content .tabs__body ul li, .participants__content .tabs__body ol li {
+  margin-bottom: 8px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.table-container {
+  width: 100%;
+  margin-top: 25px;
+  background-color: #EFF3FA;
+  border-radius: 20px;
+  box-shadow: inset -4px -4px 10px rgba(255, 255, 255, 0.7), inset 4px 4px 10px rgba(163, 177, 198, 0.4);
+  padding: 15px 0 0 0;
+  overflow-x: auto;
+  box-sizing: border-box;
+}
+.table-container .comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+.table-container .comparison-table th {
+  padding: 15px 20px;
+  text-align: center;
+  border-bottom: 3px solid rgba(0, 0, 0, 0.1);
+  color: #222;
+}
+.table-container .comparison-table td {
+  padding: 15px 20px;
+  vertical-align: top;
+  line-height: 1.6;
+  color: #444;
+}
+.table-container .comparison-table tbody tr:nth-child(odd) {
+  background-color: rgba(0, 0, 0, 0.03);
+  border-radius: 10px;
+}
+.table-container .comparison-table tbody tr:nth-child(even) {
+  background-color: transparent;
+}
+.table-container .comparison-table strong {
+  color: #222;
+}
+.table-container .comparison-table em {
+  color: #555;
 }/*# sourceMappingURL=App.css.map */

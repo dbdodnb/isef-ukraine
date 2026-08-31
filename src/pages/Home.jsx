@@ -3,7 +3,6 @@ import Header from "../components/Header";
 import Updates from "../components/Updates";
 import Timeline from "../components/Timeline";
 import Materials from "../components/Materials";
-import Partners from "../components/Partners";
 
 const Home = () => {
     return(
@@ -12,7 +11,6 @@ const Home = () => {
             <Updates />
             <Timeline />
             <Materials />
-            <Partners />
         </main>
     );
 };

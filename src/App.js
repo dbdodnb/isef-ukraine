@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
 import Nav from './components/Nav';
+import Partners from './components/Partners';
 import Footer from './components/Footer';
 import Copyright from './components/Copyright';
 
@@ -29,6 +30,7 @@ function App() {
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </div>
+        <Partners />
         <Footer />
         <Copyright />
       </div>

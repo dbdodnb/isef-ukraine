@@ -124,10 +124,10 @@ $light-blue: #7AADDC
 .header
     width: 100%
     height: calc(100vh - 160px)
-    background-image: url('img/header_bg.jpeg')
-    background-repeat: no-repeat
-    background-size: cover
-    background-position: center
+    // background-image: url('img/header_bg.jpeg')
+    // background-repeat: no-repeat
+    // background-size: cover
+    // background-position: center
     // filter: brightness(0.7)
     margin-top: 140px
     border-radius: 30px
@@ -138,6 +138,20 @@ $light-blue: #7AADDC
     flex-direction: column
     align-items: flex-start
     justify-content: flex-end
+    &::before
+        content: ''
+        position: absolute
+        inset: 0
+        z-index: -1
+        background-image: url('img/header_bg.jpeg')
+        background-repeat: no-repeat
+        background-size: cover
+        background-position: center
+        filter: blur(0px) brightness(0.7)
+        box-sizing: border-box
+        margin: 140px 100px 20px 100px
+        border-radius: 30px
+
     .header__text
         color: #FFFFFF
         font-size: 20px

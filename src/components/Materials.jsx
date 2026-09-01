@@ -12,7 +12,7 @@ function Materials() {
                 <a href="" className="materials__element">
                     <p className="materials__text text">Документація</p>
                 </a>
-                <a href="" className="materials__element">
+                <a target="_blank" rel="noopener noreferrer" href="https://www.societyforscience.org/isef/" className="text materials__element">
                     <p className="materials__text text">Regeneron ISEF</p>
                 </a>
             </div>

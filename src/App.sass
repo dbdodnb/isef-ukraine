@@ -382,6 +382,7 @@ $light-blue: #7AADDC
     padding: 50px
     display: flex
     justify-content: space-between
+    flex-wrap: wrap
     .footer__element
         width: 30%
         min-height: 100px
@@ -397,6 +398,8 @@ $light-blue: #7AADDC
             margin-top: 20px
         .footer__text
             margin-top: 20px
+
+
 
 .copyright
     width: 100%
@@ -630,3 +633,198 @@ $light-blue: #7AADDC
             background-repeat: no-repeat
             background-size: contain
 
+@media screen and ( max-width: 1100px )
+    .padding
+        padding: 0 50px
+    .nav
+        width: calc( 100% - 100px )
+    .header::before
+         margin: 140px 50px 20px 50px
+
+@media screen and (max-width: 1000px)
+    .categories__content
+        grid-template-columns: repeat(2, 1fr)
+    .nav .links
+        width: 60%
+
+@media screen and ( max-width: 900px )
+    .materials .materials__element
+        width: 45%
+    .results__archive-links .results__archive-link
+        width: 45%
+    .partners .partners__element
+        width: 30%
+    .footer .footer__element
+        width: 45%
+    .updates
+        height: 250px
+
+.burger-menu
+    display: none
+
+.mobile-menu 
+    display: none
+
+@media screen and ( max-width: 800px )
+    .padding
+        padding: 0 20px
+    .header
+        padding: 50px 30px
+        &::before
+         margin: 140px 20px 20px 20px
+    .table-container
+        // Сам контейнер залишається на 100% ширини екрану, 
+        // але ми змушуємо внутрішню таблицю бути ширшою
+        .comparison-table
+            min-width: 800px // Вкажіть тут комфортну ширину (наприклад, 700px або 800px). 
+            // Якщо таблиця буде ширшою за екран, контейнер автоматично увімкне скрол.
+    .nav
+        width: calc( 100% - 40px )
+        // Ховаємо звичайне меню
+        .links
+            display: none
+            
+        // Стилізація кнопки бургера
+        .burger-menu
+            display: flex
+            flex-direction: column
+            justify-content: space-between
+            width: 30px
+            height: 21px
+            cursor: pointer
+            margin-right: 20px
+            z-index: 101 // Має бути над випадаючим меню
+
+            span
+                display: block
+                height: 3px
+                width: 100%
+                background-color: $blue // Використовуємо вашу змінну кольору
+                border-radius: 3px
+                transition: all 0.3s ease
+
+            // Анімація перетворення на хрестик
+            &.open
+                span:nth-child(1)
+                    transform: translateY(9px) rotate(45deg)
+                span:nth-child(2)
+                    opacity: 0
+                span:nth-child(3)
+                    transform: translateY(-9px) rotate(-45deg)
+
+        // Випадаюче мобільне меню
+        .mobile-menu
+            position: absolute
+            top: 110px // Опускаємо під навігаційний блок
+            right: 0
+            width: 250px
+            background-color: $bg-color
+            border-radius: 20px
+            box-shadow: -8px -8px 16px rgba(255, 255, 255, 0.7), 8px 8px 16px rgba(163, 177, 198, 0.6)
+            padding: 20px
+            box-sizing: border-box
+            display: flex
+            flex-direction: column
+            align-items: center
+            gap: 15px
+            
+            // За умовчанням приховане
+            opacity: 0
+            visibility: hidden
+            transform: translateY(-15px)
+            transition: all 0.3s ease
+            pointer-events: none
+
+            // Відкритий стан
+            &.active
+                opacity: 1
+                visibility: visible
+                transform: translateY(0)
+                pointer-events: all
+
+            ul
+                display: flex
+                flex-direction: column
+                align-items: center
+                gap: 15px
+                width: 100%
+
+                li
+                    width: 100%
+                    text-align: center
+                    
+                    a
+                        display: block
+                        text-decoration: none
+                        color: #000000
+                        font-family: "KyivType Sans"
+                        font-size: 18px
+                        font-weight: 500
+                        transition: all 0.3s ease-in-out
+                        padding: 10px 0
+                        &:hover
+                            color: $yellow
+                    .active
+                        color: $yellow
+
+@media screen and ( max-width: 700px )
+    .materials .materials__element
+        width: 100%
+    .results__archive-links .results__archive-link
+        width: 100%
+    .partners .partners__element
+        width: 45%
+    .footer .footer__element
+        width: 100%
+        &:nth-child(2)
+            margin-top: 20px
+        &:nth-child(3)
+            margin-top: 20px
+    .categories__content
+        grid-template-columns: repeat(1, 1fr)        
+            
+@media screen and ( max-width: 650px )
+    .header .header__heading
+        font-size: 25px
+    .header .header__text
+        font-size: 18px
+
+@media screen and ( max-width: 600px )
+    .updates
+        height: 300px
+    .nav .logo
+        width: 25%
+    
+@media screen and ( max-width: 500px )
+    .nav .logo
+        width: 30%
+    .timeline-container
+        padding: 50px 30px
+
+@media screen and ( max-width: 400px )
+    .nav
+        height: 70px
+        .logo
+            height: 70px
+        .mobile-menu
+            top: 80px
+    .header
+        height: calc(100vh - 130px)
+        margin-top: 110px
+        &::before
+            margin: 110px 20px 20px 20px
+    .partners .partners__element
+        width: 100%
+    .categories__content
+        margin-top: 110px
+    .participants__content
+        margin-top: 110px
+    .updates
+        height: 350px
+    .materials, .partners, .footer, .categories__content, .participants__content
+        padding: 30px
+
+@media screen and ( max-width: 385px )
+    .header
+        padding: 20px
+    

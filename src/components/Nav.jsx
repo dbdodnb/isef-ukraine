@@ -1,84 +1,53 @@
-// import React from "react"; 
-
-// function Nav() {
-
-//     return (
-//         <div className="padding">
-//             <div id="main" className="nav">
-//                 <div className="logo">
-//                     <a href="#main" className="nav__logo"></a>
-//                 </div>
-//                 <div className="links">
-//                     <ul>
-//                         <li><a href="">Головна</a></li>
-//                         <li><a href="">Категорії</a></li>
-//                         <li><a href="">Учасникам</a></li>
-//                         <li><a href="">Результати</a></li>
-//                     </ul>
-//                 </div>
-//             </div>
-//         </div>
-//     );
-// }
-
-// export default Nav;
-
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 const Nav = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
   return (
-    // Залиште ваші поточні класи для цих тегів без змін
     <div className="padding">
-        <nav className="nav">
-            <div className="logo">
-                 <a href="/" className="nav__logo"></a>
-                 </div>
-        <div className="links">
-            <ul className="navbar-nav">
-          
-          {/* Клас для li також залишається вашим (наприклад, nav-item) */}
-          <li className="nav-item">
-            <NavLink 
-              to="/" 
-              end
-              // Замість "nav-link" підставте ті класи, які зараз вказані у вашому тегу <a>.
-              // Клас "active" буде додаватися автоматично, коли сторінка відкрита.
-              className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}
-            >
-              Головна
-            </NavLink>
-          </li>
+      <nav className="nav">
+      <div className="logo">
+        <NavLink to="/" className="nav__logo" onClick={closeMenu}></NavLink>
+      </div>
 
-          <li className="nav-item">
-            <NavLink 
-              to="/categories" 
-              className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}
-            >
-              Категорії
-            </NavLink>
-          </li>
-
-          <li className="nav-item">
-            <NavLink 
-              to="/participants" 
-              className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}
-            >
-              Учасникам
-            </NavLink>
-          </li>
-
-          <li className="nav-item">
-            <NavLink 
-              to="/results" 
-              className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}
-            >
-              Результати
-            </NavLink>
-          </li>
-
+      {/* Десктопне меню */}
+      <div className="links">
+        <ul>
+          <li><NavLink to="/" end className={({ isActive }) => isActive ? "active" : ""}>Головна</NavLink></li>
+          <li><NavLink to="/categories" className={({ isActive }) => isActive ? "active" : ""}>Категорії</NavLink></li>
+          <li><NavLink to="/participants" className={({ isActive }) => isActive ? "active" : ""}>Учасникам</NavLink></li>
+          <li><NavLink to="/results" className={({ isActive }) => isActive ? "active" : ""}>Результати</NavLink></li>
         </ul>
-        </div>
+      </div>
+
+      {/* Кнопка Бургер */}
+      <div 
+        className={`burger-menu ${isMenuOpen ? 'open' : ''}`} 
+        onClick={toggleMenu}
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      {/* Мобільне меню */}
+      <div className={`mobile-menu ${isMenuOpen ? 'active' : ''}`}>
+        <ul>
+          <li><NavLink to="/" end className={({ isActive }) => isActive ? "active" : ""} onClick={closeMenu}>Головна</NavLink></li>
+          <li><NavLink to="/categories" className={({ isActive }) => isActive ? "active" : ""} onClick={closeMenu}>Категорії</NavLink></li>
+          <li><NavLink to="/participants" className={({ isActive }) => isActive ? "active" : ""} onClick={closeMenu}>Учасникам</NavLink></li>
+          <li><NavLink to="/results" className={({ isActive }) => isActive ? "active" : ""} onClick={closeMenu}>Результати</NavLink></li>
+        </ul>
+      </div>
     </nav>
     </div>
   );

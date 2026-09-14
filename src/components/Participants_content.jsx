@@ -16,15 +16,44 @@ const tabsData = [
       </>
     )
   },
-//   {
-//     id: 'organizators',
-//     label: 'Команда',
-//     content: (
-//       <>
-//         3
-//       </>
-//     )
-//   },
+  {
+    id: 'organizators',
+    label: 'Команда',
+    content: (
+      <>
+        <div className="team">
+          <div className="team__member">
+            <div className="team-photo team-photo1"></div>
+            <div className="team-info">
+              <h3 style={{ fontSize: '24px', marginTop: '10px' }} className="team-name heading">Даниїл Маментович</h3>
+              <p className="team-position text">Проєктний менеджер ISEF Ukraine</p>
+            </div>
+          </div>
+          <div className="team__member">
+            <div className="team-photo team-photo2"></div>
+            <div className="team-info">
+              <h3 style={{ fontSize: '24px', marginTop: '10px' }} className="team-name heading">Яна Чейшвілі</h3>
+              <p className="team-position text">Заступниця директора з навчально-виховної роботи НЦ "МАНУ"</p>
+            </div>
+          </div>
+          <div className="team__member">
+            <div className="team-photo team-photo3"></div>
+            <div className="team-info">
+              <h3 className="team-name heading">Яна Кошелюк</h3>
+              <p className="team-position text">Менеджерка ISEF Ukraine</p>
+            </div>
+          </div>
+          <div className="team__member">
+            <div className="team-photo team-photo4"></div>
+            <div className="team-info">
+              <h3 className="team-name heading">Анна Мельник</h3>
+              <p className="team-position text">Менеджерка ISEF Ukraine</p>
+            </div>
+          </div>
+        </div>
+      </>
+    )
+  },
   {
     id: 'registration',
     label: 'Про реєстрацію',

@@ -828,3 +828,49 @@ $light-blue: #7AADDC
     .header
         padding: 20px
     
+
+.team
+    width: 100%
+    min-height: 250px
+    display: grid
+    grid-template-columns: repeat(3, 1fr) 
+    gap: 30px
+    .team__member
+        width: 100%
+        min-height: 220px
+        background-color: $bg-color
+        box-shadow: -8px -8px 16px rgba(255, 255, 255, 0.7), 8px 8px 16px rgba(163, 177, 198, 0.6)
+        border-radius: 30px
+        display: flex
+        flex-direction: column
+        align-items: center
+        padding: 20px
+        box-sizing: border-box
+        .team-info
+            width: 100%
+        .team-photo
+            width: calc(100% - 40px)
+            aspect-ratio: 1 / 1
+            border-radius: 15px
+            background-position: center
+            margin-bottom: 15px
+            box-sizing: border-box
+            padding: 0     
+        &:nth-child(1)
+            .team-photo
+                background-image: url('img/mamentovych1.png')
+                background-size: cover
+        &:nth-child(2)
+            .team-photo
+                background-image: url('img/cheishvili.jpg')
+                background-size: cover
+                background-position-y: top
+        &:nth-child(3)
+            .team-photo
+                background-image: url('img/kosheliuk.jpg')
+                background-size: cover
+        &:nth-child(4)
+            .team-photo
+                background-image: url('img/melnyk.jpeg')
+                background-size: cover
+            

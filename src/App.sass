@@ -873,4 +873,18 @@ $light-blue: #7AADDC
             .team-photo
                 background-image: url('img/melnyk.jpeg')
                 background-size: cover
+        &:nth-child(5)
+            .team-photo
+                background-image: url('img/lehka.PNG')
+                background-size: cover
+                background-position-y: -15px
+
+@media screen and ( max-width: 930px )
+    .team
+        grid-template-columns: repeat(2, 1fr)
+
+@media screen and ( max-width: 630px )
+    .team
+        grid-template-columns: repeat(1, 1fr)
+    
             

@@ -13,7 +13,7 @@ function Footer() {
                     <p className="heading">Контакти</p>
                     <p className="footer__text text">м. Київ, Кловський узвіз, 8</p>
                     <p className="footer__text text"><a className="text" href="mailto:isef-ukraine@man.gov.ua">isef-ukraine@man.gov.ua</a></p>
-                    <p className="footer__text text"><a className="text" href="callto:+380985270931">+38(098) 527 09 31</a></p>
+                    <p className="footer__text text"><a className="text" href="callto:+380985270931">+38(098) 527 09 31</a> (Дзвінки та WhatsApp)</p>
                     <p style={{
                         fontSize: '12px',
                         opacity: '0.8'

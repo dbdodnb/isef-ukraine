@@ -50,6 +50,13 @@ const tabsData = [
               <p className="team-position text">Менеджерка ISEF Ukraine</p>
             </div>
           </div>
+          <div className="team__member">
+            <div className="team-photo team-photo4"></div>
+            <div className="team-info">
+              <h3 className="team-name heading">Наталія Легка</h3>
+              <p className="team-position text">Експертка з академічної доброчесності</p>
+            </div>
+          </div>
         </div>
       </>
     )

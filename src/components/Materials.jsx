@@ -9,7 +9,7 @@ function Materials() {
                 <a href="" className="materials__element">
                     <p className="materials__text text">Гайди</p>
                 </a>
-                <a href="https://drive.google.com/drive/folders/12uehQAIkbl0ArEpWfw1qT76MXAclWUgX?usp=sharing" className="materials__element">
+                <a target="_blank" rel="noopener noreferrer" href="https://drive.google.com/drive/folders/12uehQAIkbl0ArEpWfw1qT76MXAclWUgX?usp=sharing" className="text materials__element">
                     <p className="materials__text text">Документація</p>
                 </a>
                 <a target="_blank" rel="noopener noreferrer" href="https://www.societyforscience.org/isef/" className="text materials__element">

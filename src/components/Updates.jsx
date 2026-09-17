@@ -30,7 +30,7 @@ function Updates() {
                     }}
                     navigation={false}
                     modules={[Autoplay, Pagination, Navigation]}
-                    // onAutoplayTimeLeft={onAutoplayTimeLeft}
+                    onAutoplayTimeLeft={onAutoplayTimeLeft}
                     className="mySwiper"
                 >
                     <SwiperSlide style={{
@@ -39,17 +39,29 @@ function Updates() {
                         justifyContent: "space-evenly",
                         alignItems: "center"
                     }}>
-                        <p className="heading">Новий сезон Всеукраїнського конкурсу ISEF Ukraine розпочнеться незабаром!</p>
+                        <p className="heading">Розпочато сезон Всеукраїнського конкурсу ISEF Ukraine – 2027!</p>
                         <p className="text">Слідкуйте за оновленнями на сайті конкурсу, а також на сторінках в Instagram @isef.ukraine та @jas.ukraine</p>
                     </SwiperSlide>
-                    {/* <SwiperSlide>2</SwiperSlide>
-                    <SwiperSlide>3</SwiperSlide> */}
-                    {/*<div className="autoplay-progress" slot="container-end">
+                    <SwiperSlide style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "space-evenly",
+                        alignItems: "center"
+                    }}>
+                        <p style={{
+                            marginTop: '0'
+                        }} className="heading">Реєструйтесь до участі у вебінарах про ISEF Ukraine</p>
+                        <p style={{
+                            marginTop: '0'
+                        }} className="text">Вже 28 вересня - 2 жовтня 2026 року відбудеться серія вебінарів про підготовку до участі в конкурсі, його етапи, здійснення реєстрації, а також досвід учасників Regeneron ISEF та науковців в Україні</p>
+                    </SwiperSlide>
+                    {/* <SwiperSlide>3</SwiperSlide> */}
+                    <div className="autoplay-progress" slot="container-end">
                         <svg viewBox="0 0 48 48" ref={progressCircle}>
                             <circle cx="24" cy="24" r="20"></circle>
                          </svg>
                         <span ref={progressContent}></span>
-                    </div>*/}
+                    </div>
                 </Swiper>
             </div>
         </div>

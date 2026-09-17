@@ -6,9 +6,9 @@ function Timeline() {
         {
             id: "1",
             title: "Серія вебінарів про підготовку до участі в ISEF Ukraine",
-            date: "Вересень 2026 року",
-            description: "Дистанційно на платформі Zoom та Instagram @isef.ukraine. Деталі згодом в соціальних мережах конкурсу.",
-            status: "pending" // pending - майбутній етап (сірий)
+            date: "28 вересня - 2 жовтня 2026 року",
+            description: "Триває реєстрація учасників вебінарів. Дистанційно на платформі Zoom та Instagram @isef.ukraine. Деталі згодом в соціальних мережах конкурсу.",
+            status: "active" // pending - майбутній етап (сірий)
         },
         {
             id: "2",

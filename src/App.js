@@ -21,7 +21,7 @@ function App() {
       <div className='App'>
         <Nav />
         <a 
-          href="https://isef-ukraine.forms.app/form/6abe61692a11949f8a6b9618" 
+          href="https://jasu-international.forms.app/isef-ukraine-2027-1-step-registration" 
           target="_blank" 
           rel="noopener noreferrer"
           className="floating-form-btn"

@@ -8,7 +8,7 @@ function Timeline() {
             title: "Серія вебінарів про підготовку до участі в ISEF Ukraine",
             date: "28 вересня - 2 жовтня 2026 року",
             description: "Реєстрацію учасників вебінарів завершено. Дистанційно на платформі Zoom та Instagram @isef.ukraine. Деталі згодом в соціальних мережах конкурсу.",
-            status: "active" // pending - майбутній етап (сірий)
+            status: "completed" // pending - майбутній етап (сірий)
         },
         {
             id: "2",

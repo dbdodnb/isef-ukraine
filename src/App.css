@@ -1003,4 +1003,38 @@ body {
 .header__button:hover {
   box-shadow: inset -8px -8px 16px rgba(255, 255, 255, 0.3), inset 8px 8px 16px rgba(163, 177, 198, 0.1);
   filter: brightness(0.95);
+}
+
+.floating-form-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #045485;
+  color: #ffffff;
+  font-family: "KyivType Sans";
+  font-size: 16px;
+  padding: 15px 25px;
+  border-radius: 30px;
+  text-decoration: none;
+  box-shadow: -4px -4px 10px rgba(255, 255, 255, 0.7), 4px 4px 10px rgba(163, 177, 198, 0.6);
+  z-index: 1000;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.floating-form-btn:hover {
+  transform: translateY(-5px);
+  color: #ffffff;
+  box-shadow: -6px -6px 15px rgba(255, 255, 255, 0.8), 6px 6px 15px rgba(163, 177, 198, 0.7);
+  background-color: #7AADDC;
+}
+
+@media screen and (max-width: 800px) {
+  .floating-form-btn {
+    bottom: 20px;
+    right: 20px;
+    padding: 12px 20px;
+    font-size: 14px;
+  }
 }/*# sourceMappingURL=App.css.map */

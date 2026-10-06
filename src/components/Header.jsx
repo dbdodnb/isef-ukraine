@@ -5,6 +5,7 @@ function Header() {
     return (
         <div className="padding">
             <div className="header">
+                <div className="header__deco"></div>
                 <p className="header__heading">Всеукраїнський конкурс ISEF Ukraine</p>
                 <p className="header__text">Національний етап Міжнародної науково-технічної виставки Regeneron ISEF, що проходить щорічно у Сполучених Штатах Америки</p>
                 <p className="header__text">Організатором Всеукраїнського конкурсу ISEF Ukraine є Національний центр “Мала академія наук України”</p>

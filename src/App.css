@@ -363,6 +363,29 @@ body {
   border-color: #FFC927;
 }
 
+@keyframes pulse-yellow {
+  0%, 100% {
+    background-color: #EFF3FA;
+  }
+  50% {
+    background-color: #FFC927;
+  }
+}
+.timeline-item.active .timeline-icon {
+  border-color: #FFC927;
+  animation: pulse-yellow 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-yellow {
+  0%, 100% {
+    background-color: #EFF3FA;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  }
+  50% {
+    background-color: #FFC927;
+    box-shadow: 0 0 10px #FFC927;
+  }
+}
 .materials {
   width: 100%;
   min-height: 200px;
@@ -417,7 +440,6 @@ body {
   box-shadow: -8px -8px 16px rgba(255, 255, 255, 0.7), 8px 8px 16px rgba(163, 177, 198, 0.6);
   box-sizing: border-box;
   padding: 50px;
-  justify-content: space-between;
 }
 .partners .partners__element {
   display: inline-block;
@@ -425,8 +447,14 @@ body {
   height: 150px;
   margin-top: 20px;
 }
-.partners .partners__element:nth-child(2) {
+.partners .partners__element:nth-child(3) {
   background-image: url("img/usembassy.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+.partners .partners__element:nth-child(2) {
+  background-image: url("img/mon_logo.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -1034,7 +1062,7 @@ body {
   background-color: #045485;
   color: #ffffff;
   font-family: "KyivType Sans";
-  font-size: 16px;
+  font-size: 18px;
   padding: 15px 25px;
   border-radius: 30px;
   text-decoration: none;
@@ -1057,6 +1085,6 @@ body {
     bottom: 20px;
     right: 20px;
     padding: 12px 20px;
-    font-size: 14px;
+    font-size: 18px;
   }
 }/*# sourceMappingURL=App.css.map */

@@ -3,11 +3,13 @@ import Header from "../components/Header";
 import Updates from "../components/Updates";
 import Timeline from "../components/Timeline";
 import Materials from "../components/Materials";
+import Countdown from "../components/Countdown";
 
 const Home = () => {
     return(
         <main className="home-page">
             <Header />
+            <Countdown />
             <Updates />
             <Timeline />
             <Materials />

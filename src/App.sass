@@ -974,3 +974,76 @@ $light-blue: #7AADDC
         right: 20px
         padding: 12px 20px
         font-size: 18px
+
+.countdown-container
+  width: 100%
+  margin-top: 20px
+  background-color: $bg-color
+  border-radius: 30px
+  box-shadow: -8px -8px 16px rgba(255, 255, 255, 0.7), 8px 8px 16px rgba(163, 177, 198, 0.6)
+  padding: 40px 50px
+  box-sizing: border-box
+  display: flex
+  flex-direction: column
+  align-items: center
+  text-align: center
+
+  .countdown-heading
+    margin-bottom: 30px
+    color: $text-color
+
+  .countdown-wrapper
+    display: flex
+    align-items: center
+    justify-content: center
+    gap: 15px
+    flex-wrap: wrap
+
+  .countdown-item
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    background-color: $bg-color
+    width: 100px
+    height: 100px
+    border-radius: 20px
+    box-shadow: inset -4px -4px 10px rgba(255, 255, 255, 0.7), inset 4px 4px 10px rgba(163, 177, 198, 0.4)
+    
+    .countdown-value
+      font-family: "KyivType Sans"
+      font-size: 32px
+      font-weight: bold
+      color: $blue
+      margin-bottom: 5px
+
+    .countdown-label
+      font-family: "eUkraine"
+      font-size: 14px
+      color: $text-color
+
+  .countdown-separator
+    font-family: "KyivType Sans"
+    font-size: 32px
+    font-weight: bold
+    color: $blue
+    margin-top: -20px // Вирівнювання двокрапки відносно цифр
+
+// Адаптація для мобільних пристроїв
+@media screen and (max-width: 600px)
+  .countdown-container
+    padding: 30px 20px
+
+    .countdown-item
+      width: 70px
+      height: 70px
+      
+      .countdown-value
+        font-size: 24px
+      
+      .countdown-label
+        font-size: 11px
+
+    .countdown-separator
+      font-size: 24px
+      margin-top: -15px

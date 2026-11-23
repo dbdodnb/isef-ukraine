@@ -9,7 +9,7 @@ const Home = () => {
     return(
         <main className="home-page">
             <Header />
-            <Countdown />
+            {/* <Countdown /> */}
             <Updates />
             <Timeline />
             <Materials />

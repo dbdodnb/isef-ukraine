@@ -20,14 +20,14 @@ function App() {
       <ScrollToTop />
       <div className='App'>
         <Nav />
-        <a 
+        {/* <a 
           href="https://jasu-international.forms.app/isef-ukraine-2027-1-step-registration" 
           target="_blank" 
           rel="noopener noreferrer"
           className="floating-form-btn"
         >
           Реєстрація до I етапу
-        </a>
+        </a> */}
         <div className='main-content'>
           <Routes>
             <Route path='/' element={<Home />} />

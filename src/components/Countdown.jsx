@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 
 const Countdown = () => {
   const calculateTimeLeft = () => {
-    // Встановлюємо цільову дату: 14 листопада 2026 року
-    const targetDate = new Date("2026-11-14T00:00:00");
+    // Встановлюємо цільову дату: 21 листопада 2026 року
+    const targetDate = new Date("2026-11-21T00:00:00");
     const currentTime = new Date();
     const difference = targetDate - currentTime;
 

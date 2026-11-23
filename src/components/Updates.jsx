@@ -39,6 +39,24 @@ function Updates() {
                         justifyContent: "space-evenly",
                         alignItems: "center"
                     }}>
+                        <p className="heading">Реєстрацію проєктів до участі в I етапі ISEF Ukraine 2027 завершено!</p>
+                        <p className="text">Відбувається перевірка зареєстрованих проєктів на відповідність вимогам конкурсу. Учасники отримають лист про електронною поштою про статус участі їх проєкту.</p>
+                    </SwiperSlide>
+                    <SwiperSlide style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "space-evenly",
+                        alignItems: "center"
+                    }}>
+                        <p className="heading">Термін реєстрації проєктів до участі в I етапі ISEF Ukraine 2027 продовжено!</p>
+                        <p className="text">Реєстрація проєктів до участі в I етапі ISEF Ukraine 2027 триває до 20 листопада 2026 року включно.</p>
+                    </SwiperSlide>
+                    <SwiperSlide style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "space-evenly",
+                        alignItems: "center"
+                    }}>
                         <p className="heading">Розпочато реєстрацію проєктів до участі в I етапі ISEF Ukraine 2027!</p>
                         <p className="text">Реєстрація проєктів до участі в I етапі ISEF Ukraine 2027 триває до 13 листопада 2026 року. Радимо передивитися всі <a className="text" href="https://drive.google.com/drive/folders/16Q53ZxVAuvDEzmo2fhu_OgA0yk6E3Wkz?usp=sharing" target="_blank" rel="noopener noreferrer">гайди ISEF Ukraine</a> перед відправленням форми 😉</p>
                     </SwiperSlide>

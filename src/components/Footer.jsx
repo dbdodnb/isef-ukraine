@@ -1,10 +1,12 @@
 import React from "react";
+import { Tiles } from "./Icons";
 
 function Footer() {
 
     return(
         <div className="padding">
             <div className="footer">
+                <Tiles count={14} className="footer__tiles" />
                 <div className="footer__element">
                     <p className="heading">Всеукраїнський конкурс ISEF Ukraine</p>
                     <p className="footer__text text">Слідкуй за нами в <a className="text" target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/isef.ukraine">Instagram</a>!</p>

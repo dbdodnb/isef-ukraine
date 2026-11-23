@@ -377,14 +377,15 @@ const categoriesData = [
     }
 ];
 
-const CategoryCard = ({ title, details, isOpen, onClick }) => {
+const CategoryCard = ({ code, title, details, isOpen, onClick }) => {
     return (
         <div 
             className={`categories__element ${isOpen ? 'active' : ''}`} 
             onClick={onClick}
         >
             <div className="category__header">
-                <p className="category__text text">{title}</p>
+                <span className="category__code">{code}</span>
+                <p className="category__text text">{title.replace(` (${code})`, "")}</p>
             </div>
             
             {isOpen && (
@@ -406,12 +407,13 @@ function Categories_content() {
 
     return (
         <div className="categories__content">
-            <p className="categories__heading heading">Kатегорії ISEF Ukraine</p>
+            <p className="categories__heading heading">Категорії ISEF Ukraine</p>
             <p className="categories__text text">Майбутнім учасникам запропоновано 22 категорії на вибір для підготовки наукового чи інженерного проєкту</p>
             
             {categoriesData.map(cat => (
                 <CategoryCard 
                     key={cat.id} 
+                    code={cat.id}
                     title={cat.title} 
                     details={cat.details} 
                     isOpen={openCategoryId === cat.id} 

@@ -1,116 +1,228 @@
+@use "sass:color"
+
+// =====================================================================
+//  ISEF Ukraine — дизайн у стилі дописів Instagram @isef.ukraine
+//  Темно-синій + блакитний + жовті стрілки, «зошит у клітинку»,
+//  плитки-піктограми (шестерня, колба, крапки, стрілка), пласкі блоки.
+// =====================================================================
+
+// ---------- Reset ----------
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video
-  margin: 0
-  padding: 0
-  border: 0
-  font-size: 100%
-  font: inherit
-  vertical-align: baseline
+    margin: 0
+    padding: 0
+    border: 0
+    font-size: 100%
+    font: inherit
+    vertical-align: baseline
 
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section
-  display: block
+    display: block
 
 body
-  line-height: 1
+    line-height: 1
 
 ol, ul
-  list-style: none
+    list-style: none
 
 blockquote, q
-  quotes: none
-
-blockquote
-  &:before, &:after
-    content: ''
-    content: none
-
-q
-  &:before, &:after
-    content: ''
-    content: none
+    quotes: none
 
 table
-  border-collapse: collapse
-  border-spacing: 0
+    border-collapse: collapse
+    border-spacing: 0
 
-html
-  scroll-behavior: smooth
-  scroll-padding-top: 150px
-  overflow-x: clip
-
-.padding
-    padding: 0 100px
-
-body 
-    background-image: url('img/bg.svg')
-    background-color: #EFF3FA
-    background-repeat: no-repeat
-    background-size: cover
-    background-attachment: fixed
-
+// ---------- Fonts ----------
 @font-face
     font-family: "KyivType Sans"
     src: url('fonts/KyivTypeSans-Heavy.woff2') format('woff2')
+    font-display: swap
 
 @font-face
     font-family: "eUkraine"
     src: url('fonts/e-ukraine-regular_w.woff2') format('woff2')
+    font-display: swap
+
+// ---------- Палітра (лише фірмові кольори) ----------
+// #FFFFFF  #020A0A  #045485  #FFC927  #7AADDC
+$white: #FFFFFF
+$black: #020A0A
+$blue: #045485
+$yellow: #FFC927
+$light: #7AADDC
+
+// Світлі відтінки фірмових кольорів (змішані з білим)
+$light-10: color.mix($light, $white, 10%)
+$light-20: color.mix($light, $white, 22%)
+$light-40: color.mix($light, $white, 42%)
+$light-60: color.mix($light, $white, 60%)
+$yellow-20: color.mix($yellow, $white, 22%)
+
+// Ролі (усі посилаються на фірмову палітру)
+$navy: $blue
+$tile-light: $light
+$footer-bg: $blue
+$copyright-bg: $black
+$peri: $light
+$bg-color: $light-10
+$paper: $white
+$ink: $black
+$text-color: $black
+$line: $light
+$peri-light: $light-20
+$radius: 16px
+$radius-sm: 10px
+$nav-h: 84px
+// Максимальна ширина вмісту: на великих екранах сайт не розтягується,
+// а стоїть по центру
+$container: 1280px
+
+$display: "KyivType Sans", "Arial Black", sans-serif
+$body: "eUkraine", -apple-system, "Segoe UI", Roboto, sans-serif
+
+@mixin card
+    background-color: $paper
+    border: 0
+    border-radius: $radius
+    box-shadow: none
+
+@mixin grid-paper($size: 28px, $alpha: 0.09)
+    background-image: linear-gradient(rgba($light, $alpha) 1px, transparent 1px), linear-gradient(90deg, rgba($light, $alpha) 1px, transparent 1px)
+    background-size: $size $size
+
+@mixin marker
+    content: ""
+    display: inline-block
+    flex-shrink: 0
+    width: 0.6em
+    height: 0.6em
+    background-color: $yellow
+    margin-right: 0.5em
+    transform: translateY(-0.05em)
+
+// ---------- База ----------
+html
+    scroll-behavior: smooth
+    scroll-padding-top: 130px
+    overflow-x: clip
+
+body
+    background-color: $bg-color
+    @include grid-paper(32px, 0.28)
+    background-attachment: fixed
+    color: $text-color
+    -webkit-font-smoothing: antialiased
+
+.padding
+    padding: 0 100px
+    max-width: calc(#{$container} + 200px)
+    margin: 0 auto
+    box-sizing: border-box
+
+.main-content
+    min-height: 60vh
 
 .heading
-    font-family: "KyivType Sans"
+    font-family: $display
     font-size: 25px
-
-$yellow: #FFC927
-$bg-color: #EFF3FA
-$blue: #045485
-$text-color: #444444
-$light-blue: #7AADDC
+    line-height: 1.25
+    color: $ink
 
 .text
-    font-family: "eUkraine"
+    font-family: $body
     font-size: 18px
+    line-height: 1.55
     color: $text-color
 
+a.text, .text a
+    color: $blue
+    text-decoration-color: rgba($blue, 0.35)
+    text-decoration-thickness: 1px
+    text-underline-offset: 3px
+    transition: color 0.2s ease
+    &:hover
+        color: $navy
+
+// Заголовки секцій — звичайним регістром, без декоративних маркерів
+.timeline-heading, .materials__heading, .partners__heading, .categories__heading, .countdown-heading
+    font-family: $display
+    font-size: 36px
+    line-height: 1.1
+    color: $navy
+    letter-spacing: -0.01em
+
+
+// ---------- Плитки-піктограми ----------
+.tiles
+    display: flex
+    background-color: $tile-light
+    .tiles__item
+        flex: 1
+        aspect-ratio: 1 / 1
+        display: flex
+        align-items: center
+        justify-content: center
+        background-color: $tile-light
+        color: $blue
+        svg
+            width: 100%
+            height: 100%
+        &--filled
+            background-color: $blue
+            color: $tile-light
+
+// ---------- Навігація ----------
 .nav
     position: fixed
-    top: 0
+    top: 16px
     z-index: 100
+    left: 0
+    right: 0
+    margin: 0 auto
     width: calc(100% - 200px)
-    height: 100px
-    background-color: $bg-color
-    margin-top: 20px
-    border-radius: 30px
-    box-shadow: -8px -8px 16px rgba(255, 255, 255, 0.7), 8px 8px 16px rgba(163, 177, 198, 0.6)
+    max-width: $container
+    height: $nav-h
+    background-color: rgba($white, 0.94)
+    backdrop-filter: saturate(1.4) blur(10px)
+    -webkit-backdrop-filter: saturate(1.4) blur(10px)
+    border: 0
+    border-radius: $radius
+    box-shadow: 0 14px 30px -22px rgba($black, 0.45)
     display: flex
     align-items: center
     justify-content: space-between
+    box-sizing: border-box
     .links
         display: flex
         align-items: center
-        justify-content: space-between
-        width: 50%
-        margin-right: 50px
+        height: 100%
+        margin-right: 28px
         ul
             display: flex
             align-items: center
-            justify-content: space-between
-            width: 100%
+            gap: 6px
+            height: 100%
             li
                 a
+                    position: relative
+                    display: block
+                    padding: 12px 16px
                     text-decoration: none
-                    color: #000000
-                    font-family: "KyivType Sans"
-                    font-size: 18px
-                    font-weight: 500
-                    transition: all 0.3s ease-in-out
+                    color: $ink
+                    font-family: $display
+                    font-size: 17px
+                    border-radius: 999px
+                    transition: color 0.2s ease, background-color 0.2s ease
                     &:hover
-                        color: $yellow
+                        color: $blue
+                        background-color: $light-10
                 .active
-                    color: $yellow
-        
+                    color: $blue
+                    background-color: $light-20
+
     .logo
-        width: 20%
-        height: 100px
-        margin-left: 20px
+        width: 170px
+        height: 100%
+        margin-left: 24px
         .nav__logo
             display: block
             width: 100%
@@ -118,65 +230,112 @@ $light-blue: #7AADDC
             background-image: url('img/ISEF Ukraine.png')
             background-repeat: no-repeat
             background-size: contain
-            background-position-y: center
-            background-position-x: 0
+            background-position: left center
 
+// ---------- Hero ----------
 .header
-    width: 100%
-    height: calc(100vh - 160px)
-    // background-image: url('img/header_bg.jpeg')
-    // background-repeat: no-repeat
-    // background-size: cover
-    // background-position: center
-    // filter: brightness(0.7)
-    margin-top: 140px
-    border-radius: 30px
-    box-shadow: -8px -8px 16px rgba(255, 255, 255, 0.7), 8px 8px 16px rgba(163, 177, 198, 0.6)
-    padding: 70px 50px
-    box-sizing: border-box
-    display: flex
-    flex-direction: column
-    align-items: flex-start
-    justify-content: flex-end
-    &::before
-        content: ''
-        position: absolute
-        inset: 0
-        z-index: -1
+    margin-top: calc(#{$nav-h} + 36px)
+    min-height: clamp(560px, calc(100vh - #{$nav-h} - 60px), 780px)
+    display: grid
+    grid-template-columns: 1.05fr 1fr
+    border-radius: $radius
+    overflow: hidden
+    box-shadow: 0 30px 60px -35px rgba($black, 0.5)
+
+    .header__panel
+        position: relative
+        z-index: 0
+        overflow: hidden
+        background-color: $blue
+        @include grid-paper(36px, 0.0)
+        padding: 48px 52px 56px
+        display: flex
+        flex-direction: column
+        justify-content: flex-end
+        color: $white
+
+    .header__kicker
+        font-family: $body
+        font-size: 22px
+        line-height: 1.3
+        color: $white
+        opacity: 0.92
+
+    .header__heading
+        margin-top: 6px
+        font-family: $display
+        font-size: clamp(40px, 4.6vw, 64px)
+        line-height: 1.02
+        color: $white
+        text-transform: uppercase
+        letter-spacing: 0.005em
+        span
+            display: block
+            color: $yellow
+
+    .header__text
+        max-width: 560px
+        margin-top: 18px
+        font-family: $body
+        font-size: 17px
+        line-height: 1.55
+        color: $light-20
+        & + .header__text
+            margin-top: 10px
+
+    .header__status
+        display: flex
+        align-items: center
+        gap: 14px
+        align-self: flex-start
+        max-width: 560px
+        margin-top: 30px
+        padding: 14px 22px 14px 14px
+        background-color: $white
+        border-radius: $radius-sm
+        font-family: $display
+        font-size: 16px
+        line-height: 1.35
+        color: $blue
+        .header__status-icon
+            flex-shrink: 0
+            width: 34px
+            height: 34px
+            padding: 7px
+            box-sizing: border-box
+            color: $yellow
+            background-color: $blue
+            border-radius: 8px
+
+    .header__media
+        display: flex
+        flex-direction: column
+        background-color: $peri
+
+    .header__photo
+        position: relative
+        flex: 1
+        min-height: 320px
         background-image: url('img/header_bg.jpeg')
         background-repeat: no-repeat
         background-size: cover
         background-position: center
-        filter: blur(0px) brightness(0.7)
-        box-sizing: border-box
-        margin: 140px 100px 20px 100px
-        border-radius: 30px
 
-    .header__text
-        color: #FFFFFF
-        font-size: 20px
-        font-family: "eUkraine"
-        margin-top: 10px
-        line-height: 1.5
-    .header__heading
-        color: #FFFFFF
-        font-family: "KyivType Sans"
-        font-size: 45px
-        z-index: 10
-        line-height: 1.5
-    
+    .header__tiles
+        flex-shrink: 0
+
 .header .header__deco
-    width: 300px
-    height: 300px
-    background-image: url('img/deco2027.png')
+    width: 340px
+    height: 340px
+    background-image: url('img/deco2027_light.png')
     background-repeat: no-repeat
     background-size: contain
-    box-sizing: border-box
     position: absolute
     z-index: -1
-    top: 50px
-    right: 50px
-    animation: rotate 30s linear infinite
+    top: -60px
+    right: -90px
+    opacity: 0.45
+    animation: rotate 40s linear infinite
 
 @keyframes rotate
     from
@@ -184,108 +343,164 @@ $light-blue: #7AADDC
     to
         transform: rotate(360deg)
 
-.updates
-    width: 100%
-    height: 200px
-    background-color: $bg-color
-    margin-top: 20px
-    border-radius: 30px
-    box-shadow: -8px -8px 16px rgba(255, 255, 255, 0.7), 8px 8px 16px rgba(163, 177, 198, 0.6)
+.header__button
+    display: inline-flex
+    align-items: center
+    align-self: flex-start
+    margin-top: 24px
+    padding: 16px 26px
+    background-color: $yellow
+    color: $ink
+    font-family: $display
+    font-size: 16px
+    text-decoration: none
+    text-transform: uppercase
+    border-radius: $radius-sm
+    transition: transform 0.2s ease, background-color 0.2s ease
+    &:hover
+        transform: translateY(-2px)
+        background-color: $white
 
-.swiper 
-    width: 100% 
-    height: 100% 
-.swiper-slide
+// ---------- Новини (слайдер) ----------
+.updates
+    position: relative
+    width: 100%
+    min-height: 220px
+    margin-top: 24px
+    background-color: $navy
+    @include grid-paper(28px, 0)
+    border-radius: $radius
+    overflow: hidden
+    &::before
+        content: "Новини"
+        position: absolute
+        top: 24px
+        left: 48px
+        z-index: 2
+        padding: 6px 12px
+        background-color: $yellow
+        color: $black
+        font-family: $display
+        font-size: 12px
+        letter-spacing: 0.06em
+        text-transform: uppercase
+        border-radius: 999px
+    .swiper-slide
+        align-items: flex-start !important
+        text-align: left
+        padding: 68px 48px 64px
+    .heading
+        color: $white
+        font-size: 26px
+        max-width: 900px
+    .text
+        color: $light-20
+        max-width: 860px
+    a.text, .text a
+        color: $yellow
+
+.swiper
     width: 100%
     height: 100%
-    text-align: center 
-    font-size: 18px 
+.swiper-slide
+    width: 100%
+    min-height: 220px
+    height: auto
+    text-align: center
+    font-size: 18px
     box-sizing: border-box
-    padding: 30px 20px
-    img 
-        display: block 
-        width: 100% 
-        height: 100% 
-        object-fit: cover 
-.autoplay-progress 
-    position: absolute 
-    right: 16px 
-    bottom: 16px 
-    z-index: 10 
-    width: 48px 
-    height: 48px 
-    display: flex 
-    align-items: center 
-    justify-content: center 
-    font-family: "KyivType Sans"
-    color: $blue
-    svg 
-        --progress: 0 
-        position: absolute 
-        left: 0 
-        top: 0px 
-        z-index: 10 
-        width: 100% 
-        height: 100% 
-        stroke-width: 4px 
-        stroke: $blue
-        fill: none 
-        stroke-dashoffset: calc(125.6px * (1 - var(--progress))) 
-        stroke-dasharray: 125.6 
-        transform: rotate(-90deg) 
+    padding: 64px 40px 56px
+    gap: 14px
+    img
+        display: block
+        width: 100%
+        height: 100%
+        object-fit: cover
+
+.autoplay-progress
+    position: absolute
+    right: 18px
+    bottom: 18px
+    z-index: 10
+    width: 46px
+    height: 46px
+    display: flex
+    align-items: center
+    justify-content: center
+    font-family: $display
+    font-size: 13px
+    color: $yellow
+    svg
+        --progress: 0
+        position: absolute
+        left: 0
+        top: 0
+        z-index: 10
+        width: 100%
+        height: 100%
+        stroke-width: 4px
+        stroke: $yellow
+        fill: none
+        stroke-dashoffset: calc(125.6px * (1 - var(--progress)))
+        stroke-dasharray: 125.6
+        transform: rotate(-90deg)
 
 .mySwiper
     --swiper-pagination-color: #{$yellow}
-    --swiper-pagination-bullet-inactive-color: #{$blue}
-    --swiper-pagination-bullet-inactive-opacity: 0.4
+    --swiper-pagination-bullet-inactive-color: #{$light}
+    --swiper-pagination-bullet-inactive-opacity: 1
+    --swiper-pagination-bottom: 22px
+    .swiper-pagination
+        text-align: left
+        padding-left: 48px
+        box-sizing: border-box
     .swiper-pagination-bullet
-        width: 70px
+        width: 10px
         height: 10px
-        border-radius: 5px
-        
+        border-radius: 50%
+
+// ---------- Таймлайн ----------
 .timeline-container
     width: 100%
-    background-color: $bg-color
-    margin-top: 20px
-    border-radius: 30px
-    box-shadow: -8px -8px 16px rgba(255, 255, 255, 0.7), 8px 8px 16px rgba(163, 177, 198, 0.6)
+    margin-top: 24px
+    @include card
     padding: 50px
     box-sizing: border-box
 
 .timeline-heading
-    margin-bottom: 40px
-    color: #000000
+    margin-bottom: 36px
 
 .timeline-wrapper
     display: flex
     flex-direction: column
-    padding-left: 10px
+    padding-left: 4px
 
 .timeline-item
     display: flex
-    gap: 25px
+    gap: 26px
     position: relative
-    padding-bottom: 40px
+    padding-bottom: 36px
     &:last-child
         padding-bottom: 0
 
 .timeline-icon
-    width: 20px
-    height: 20px
+    width: 22px
+    height: 22px
+    background-color: $paper
+    border: 3px solid $light-60
     border-radius: 50%
-    background-color: $bg-color
-    border: 4px solid #A3B1C6
+    box-sizing: border-box
     z-index: 2
     flex-shrink: 0
     margin-top: 2px
 
 .timeline-connector
     position: absolute
-    left: 12px
-    top: 26px
+    left: 10px
+    top: 24px
     bottom: 0
-    width: 3px
-    background-color: #A3B1C6
+    width: 2px
+    background-color: $light-60
     z-index: 1
 
 .timeline-content
@@ -293,492 +508,804 @@ $light-blue: #7AADDC
     flex-direction: column
     gap: 10px
     margin-top: -2px
+    padding-bottom: 4px
 
 .timeline-header
     display: flex
     flex-direction: column
-    gap: 5px
+    gap: 6px
 
 .timeline-title
-    font-family: "KyivType Sans"
-    font-size: 22px
-    font-weight: 500
-    color: #000000
+    font-family: $display
+    font-size: 21px
+    line-height: 1.3
+    color: $ink
 
 .timeline-date
-    font-family: "eUkraine"
+    align-self: flex-start
+    font-family: $body
     font-size: 14px
-    color: #666666
-    font-weight: bold
+    color: $blue
 
 .timeline-desc
-    color: #444444
-    line-height: 1.5
+    color: $text-color
+    line-height: 1.55
 
 .timeline-item.completed
     .timeline-icon
-        background-color: $yellow
-        border-color: $yellow
+        background-color: $blue
+        border-color: $blue
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 8.5l3 3 7-7' stroke='%23FFC927' stroke-width='2.6' fill='none'/%3E%3C/svg%3E")
+        background-size: 14px
+        background-position: center
+        background-repeat: no-repeat
     .timeline-connector
-        background-color: $yellow
+        background-color: $blue
+    .timeline-title
+        color: $blue
 
 .timeline-item.active
     .timeline-icon
-        background-color: $bg-color
-        border-color: $yellow
+        background-color: $yellow
+        border-color: $navy
+        animation: pulse-yellow 1.6s ease-in-out infinite
+    .timeline-content
+        position: relative
+        background-color: $yellow-20
+        padding: 16px 20px
+        margin: -10px 0 0 -8px
+        border-radius: $radius-sm
+    .timeline-date
+        font-weight: bold
 
 @keyframes pulse-yellow
     0%, 100%
-        background-color: $bg-color
+        box-shadow: 0 0 0 0 rgba($yellow, 0.7)
     50%
-        background-color: $yellow
+        box-shadow: 0 0 0 8px rgba($yellow, 0)
 
-.timeline-item.active
-    .timeline-icon
-        border-color: $yellow
-        animation: pulse-yellow 1.5s ease-in-out infinite
-
-@keyframes pulse-yellow
-    0%, 100%
-        background-color: $bg-color
-        box-shadow: 0 0 0 rgba(0, 0, 0, 0)
-    50%
-        background-color: $yellow
-        box-shadow: 0 0 10px $yellow
-
+// ---------- Матеріали ----------
 .materials
     width: 100%
-    min-height: 200px
-    margin-top: 20px
-    border-radius: 30px
-    background-color: $bg-color
-    box-shadow: -8px -8px 16px rgba(255, 255, 255, 0.7), 8px 8px 16px rgba(163, 177, 198, 0.6)
+    margin-top: 24px
+    @include card
     padding: 50px
     box-sizing: border-box
-    display: flex
-    flex-wrap: wrap
-    justify-content: space-between
-    .materials__element
-        background: $bg-color
-        box-shadow: -8px -8px 16px rgba(255, 255, 255, 0.7), 8px 8px 16px rgba(163, 177, 198, 0.6)
-        width: 30%
-        min-height: 100px
-        margin-top: 50px
-        border-radius: 30px
-        display: flex
-        justify-content: center
-        align-items: center
-        &:hover
-            box-shadow: inset -8px -8px 16px rgba(255, 255, 255, 0.7), inset 8px 8px 16px rgba(163, 177, 198, 0.6)
-            filter: brightness(0.95)
-        .materials__text::after
-            content: ""
-            display: inline-block
-            width: 1em
-            height: 1em
-            margin-left: 0.4em
-            background: url('img/arrow.svg')
-            background-repeat: no-repeat
-            background-size: contain
+    display: grid
+    grid-template-columns: repeat(3, 1fr)
+    grid-auto-flow: dense
+    gap: 20px
     .materials__heading
-        text-align: center
-        width: 100%
+        grid-column: 1 / -1
+        margin-bottom: 6px
+    .materials__element
+        position: relative
+        display: flex
+        flex-direction: column
+        justify-content: space-between
+        min-height: 170px
+        padding: 22px
+        box-sizing: border-box
+        background-color: $peri-light
+        border-radius: $radius-sm
+        text-decoration: none
+        overflow: hidden
+        transition: background-color 0.25s ease, transform 0.25s ease
+        .materials__icon
+            display: flex
+            width: 58px
+            height: 58px
+            background-color: $blue
+            color: $tile-light
+            border-radius: 6px
+            transition: background-color 0.25s ease, color 0.25s ease
+            svg
+                width: 100%
+                height: 100%
+        .materials__text
+            font-family: $display
+            font-size: 22px
+            color: $navy
+            margin-top: 24px
+            transition: color 0.25s ease
+        .materials__arrow
+            position: absolute
+            top: 22px
+            right: 22px
+            width: 28px
+            height: 28px
+            color: $blue
+            transition: transform 0.25s ease
+        .materials__count
+            margin-top: 4px
+            font-size: 14px
+            color: $blue
+            transition: color 0.25s ease
+        &:hover, &.active
+            background-color: $blue
+            transform: translateY(-3px)
+            .materials__icon
+                background-color: $yellow
+                color: $navy
+            .materials__text
+                color: $white
+            .materials__count
+                color: $light-20
+            .materials__arrow
+                color: $yellow
+                transform: translate(3px, -3px)
+        &:focus-visible
+            outline: 3px solid $yellow
+            outline-offset: 3px
 
+    // Плитка-перемикач: стрілка дивиться вниз, а коли список відкрито — вгору
+    .materials__element--toggle
+        width: 100%
+        border: 0
+        text-align: left
+        cursor: pointer
+        font: inherit
+        .materials__arrow
+            transform: rotate(135deg)
+        &:hover .materials__arrow
+            transform: rotate(135deg) translate(0, -3px)
+        &.active
+            transform: none
+            .materials__arrow
+                transform: rotate(-45deg)
+
+    // Розкритий список документів
+    .materials__list
+        grid-column: 1 / -1
+        padding: 26px 28px 24px
+        background-color: $light-10
+        border: 0
+        border-radius: $radius-sm
+        animation: fadeIn 0.3s ease
+        .materials__list-header
+            display: flex
+            align-items: center
+            justify-content: space-between
+            margin-bottom: 18px
+        .materials__list-title
+            font-size: 22px
+            color: $blue
+        .materials__close
+            width: 40px
+            height: 40px
+            border: 0
+            border-radius: $radius-sm
+            background-color: $light-20
+            color: $blue
+            font-size: 26px
+            line-height: 1
+            cursor: pointer
+            transition: background-color 0.2s ease
+            &:hover
+                background-color: $light-40
+        .materials__docs
+            display: grid
+            grid-template-columns: repeat(2, 1fr)
+            gap: 10px
+        .materials__doc
+            display: flex
+            align-items: center
+            gap: 14px
+            height: 100%
+            min-height: 62px
+            padding: 12px 16px
+            box-sizing: border-box
+            background-color: $white
+            border: 0
+            border-radius: $radius-sm
+            text-decoration: none
+            transition: background-color 0.2s ease
+            .materials__type
+                flex-shrink: 0
+                min-width: 52px
+                padding: 6px 0
+                text-align: center
+                font-family: $display
+                font-size: 12px
+                letter-spacing: 0.04em
+                border-radius: 6px
+                // Будь-який інший формат (XLSX, PPTX, ZIP…)
+                background-color: $light-40
+                color: $blue
+                &--pdf
+                    background-color: $blue
+                    color: $white
+                &--docx
+                    background-color: $yellow
+                    color: $black
+            .materials__doc-title
+                flex: 1
+                font-size: 16px
+                line-height: 1.35
+                color: $black
+            .materials__doc-arrow
+                flex-shrink: 0
+                width: 18px
+                height: 18px
+                color: $light
+                transition: color 0.2s ease, transform 0.2s ease
+            &:hover
+                background-color: $light-20
+                .materials__doc-arrow
+                    color: $blue
+                    transform: translate(2px, -2px)
+            &:focus-visible
+                outline: 3px solid $yellow
+                outline-offset: 2px
+            // Документ без посилання: видно в списку, але не клікається
+            &--disabled
+                cursor: default
+                background-color: $light-10
+                .materials__type, .materials__doc-title
+                    opacity: 0.55
+                &:hover
+                    background-color: $light-10
+        .materials__folder
+            display: inline-block
+            margin-top: 18px
+            font-size: 15px
+
+// ---------- Партнери ----------
 .partners
     width: 100%
-    min-height: 200px
     display: flex
     flex-wrap: wrap
-    margin-top: 20px
-    border-radius: 30px
-    background-color: $bg-color
-    box-shadow: -8px -8px 16px rgba(255, 255, 255, 0.7), 8px 8px 16px rgba(163, 177, 198, 0.6)
+    align-items: center
+    gap: 20px
+    margin-top: 24px
+    @include card
+    border-radius: $radius
+    background-color: $white
     box-sizing: border-box
-    padding: 50px
-    // justify-content: space-between
-    .partners__element
-        display: inline-block
-        width: 20%
-        height: 150px
-        margin-top: 20px
-        &:nth-child(3)
-            background-image: url('img/usembassy.png')
-            background-repeat: no-repeat
-            background-position: center
-            background-size: contain
-        &:nth-child(2)
-            background-image: url('img/mon_logo.png')
-            background-repeat: no-repeat
-            background-position: center
-            background-size: contain
+    padding: 40px 50px
     .partners__heading
         width: 100%
+        font-size: 24px
+    .partners__element
+        display: inline-block
+        width: 220px
+        height: 110px
+        background-repeat: no-repeat
+        background-position: center
+        background-size: contain
+        filter: grayscale(0.2)
+        transition: filter 0.2s ease
+        &:hover
+            filter: none
+        &:nth-child(2)
+            background-image: url('img/mon_logo.png')
+        &:nth-child(3)
+            background-image: url('img/usembassy.png')
 
+// ---------- Футер ----------
 .footer
+    position: relative
     width: 100%
-    min-height: 200px
-    margin-top: 20px
-    border-radius: 30px
-    background-color: $bg-color
-    box-shadow: -8px -8px 16px rgba(255, 255, 255, 0.7), 8px 8px 16px rgba(163, 177, 198, 0.6)
+    margin-top: 24px
+    border-radius: $radius $radius 0 0
+    background-color: $footer-bg
     box-sizing: border-box
-    padding: 50px
+    padding: 0 50px 50px
     display: flex
     justify-content: space-between
     flex-wrap: wrap
+    overflow: hidden
+    .footer__tiles
+        width: calc(100% + 100px)
+        margin: 0 -50px 40px
+        overflow: hidden
+        .tiles__item
+            flex: 1 1 0
+    .heading
+        color: $white
+        font-size: 20px
+    .text
+        color: $light-20
+    a.text, .text a
+        color: $white
+        text-decoration-color: rgba($white, 0.45)
+        text-decoration-thickness: 1px
+        &:hover
+            color: $yellow
     .footer__element
         width: 30%
-        min-height: 100px
         .footer__logo
             display: inline-block
             width: 100%
-            height: 100px
+            height: 90px
             background-image: url('img/jasu_logo.png')
             background-size: contain
             background-repeat: no-repeat
-            background-position-y: center
-            background-position-x: 0
+            background-position: left center
+            filter: brightness(0) invert(1)
             margin-top: 20px
         .footer__text
-            margin-top: 20px
-
-
+            margin-top: 16px
 
 .copyright
     width: 100%
-    height: 50px
-    margin-top: 20px
-    background-color: $light-blue
-    display: flex
-    align-items: center
-    justify-content: center
-    box-shadow: -8px -8px 16px rgba(255, 255, 255, 0.7)
+    padding: 18px 0
+    background-color: $copyright-bg
+    .padding
+        display: flex
+        justify-content: center
+    .text
+        font-size: 14px
+        color: $light-60
 
+// ---------- Категорії ----------
 .categories__content
     width: 100%
-    min-height: 300px
-    margin-top: 140px
-    background-color: $bg-color
-    border-radius: 30px
-    box-shadow: -8px -8px 16px rgba(255, 255, 255, 0.7), 8px 8px 16px rgba(163, 177, 198, 0.6)
+    margin-top: calc(#{$nav-h} + 36px)
+    @include card
     box-sizing: border-box
     padding: 50px
-    text-align: center
     display: grid
-    grid-template-columns: repeat(3, 1fr) 
-    gap: 20px 
-    grid-auto-flow: dense 
+    grid-template-columns: repeat(3, 1fr)
+    gap: 16px
+    grid-auto-flow: dense
     .categories__heading, .categories__text
         grid-column: 1 / -1
         width: 100%
-        margin: 0 
+        margin: 0
+    .categories__heading
+        font-size: 34px
     .categories__text
-        margin-top: 20px
-        margin-bottom: 20px 
+        margin: 4px 0 18px
+        max-width: 760px
     .categories__element
-        width: 100% 
-        grid-column: span 1 
-        min-height: 100px
+        width: 100%
+        grid-column: span 1
+        min-height: 84px
         display: flex
         flex-direction: column
-        justify-content: flex-start
-        align-items: center
-        background-color: $bg-color
-        box-shadow: -8px -8px 16px rgba(255, 255, 255, 0.7), 8px 8px 16px rgba(163, 177, 198, 0.6)
-        border-radius: 30px
+        justify-content: center
+        background-color: $peri-light
+        border: 1px solid transparent
+        border-radius: $radius-sm
         box-sizing: border-box
-        padding: 20px
+        padding: 18px
         cursor: pointer
-        transition: box-shadow 0.3s ease, transform 0.2s ease
-        &:hover, &.active
-            box-shadow: inset -8px -8px 16px rgba(255, 255, 255, 0.7), inset 8px 8px 16px rgba(163, 177, 198, 0.6)
-            filter: brightness(0.95)
+        transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease
+        &:hover
+            background-color: $blue
+            transform: translateY(-2px)
+            .category__text
+                color: $white
+            .category__code
+                background-color: $yellow
+                color: $black
         &.active
-            grid-column: 1 / -1 
+            grid-column: 1 / -1
+            justify-content: flex-start
+            background-color: $paper
+            .category__text
+                color: $blue
+            background-color: $light-10
+            transform: none
+            cursor: default
+            .category__header
+                cursor: pointer
             .category__header::after
-                transform: rotate(90deg)
+                transform: rotate(135deg)
+                background-color: $yellow
+            .category__code
+                background-color: $yellow
+                color: $ink
         .category__header
             width: 100%
             display: flex
-            justify-content: center
             align-items: center
-            min-height: 60px
+            gap: 14px
             &::after
                 content: ""
-                display: inline-block
-                width: 15px
-                height: 15px
-                margin-left: 0.4em
-                background: url('img/arrow.svg')
+                flex-shrink: 0
+                margin-left: auto
+                width: 30px
+                height: 30px
+                border-radius: 6px
+                background-color: $white
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath fill='%23045485' d='M14 7h27v27h-7.5V19.8L13.3 40 8 34.7 28.2 14.5H14z'/%3E%3C/svg%3E")
                 background-repeat: no-repeat
-                background-size: 15px 15px
+                background-size: 14px
+                background-position: center
                 transition: transform 0.3s ease
+        .category__code
+            flex-shrink: 0
+            min-width: 58px
+            padding: 8px 6px
+            box-sizing: border-box
+            text-align: center
+            background-color: $blue
+            color: $white
+            font-family: $display
+            font-size: 13px
+            letter-spacing: 0.04em
+            border-radius: 6px
         .category__text
-            width: 85%
             margin: 0
-            text-decoration: underline
+            font-family: $display
+            font-size: 17px
+            line-height: 1.3
+            color: $blue
         .category__details
             width: 100%
-            margin-top: 15px
-            padding-top: 15px
-            border-top: 1px solid rgba(0, 0, 0, 0.05)
+            margin-top: 18px
             text-align: left
             animation: fadeIn 0.4s ease
-            line-height: 1.3
+            line-height: 1.55
             .category__list
-                margin-top: 10px
-                padding-left: 20px
+                margin-top: 14px
+                display: grid
+                grid-template-columns: repeat(auto-fill, minmax(260px, 1fr))
+                gap: 8px 20px
                 li
-                    margin-bottom: 5px
-                    line-height: 1.5
+                    position: relative
+                    padding-left: 22px
+                    line-height: 1.45
+                    &::before
+                        content: ""
+                        position: absolute
+                        left: 0
+                        top: 0.45em
+                        width: 10px
+                        height: 10px
+                        background-color: $yellow
 
 @keyframes fadeIn
     from
         opacity: 0
-        transform: translateY(-10px)
+        transform: translateY(6px)
     to
         opacity: 1
         transform: translateY(0)
 
+// ---------- Учасникам / Результати (вкладки) ----------
 .participants__content
-  width: 100%
-  margin-top: 140px
-  background-color: $bg-color
-  border-radius: 30px
-  box-shadow: -8px -8px 16px rgba(255, 255, 255, 0.7), 8px 8px 16px rgba(163, 177, 198, 0.6)
-  padding: 40px
-  box-sizing: border-box
-
-  .tabs__header
-    display: flex
-    gap: 15px
-    border-bottom: 2px solid rgba(0, 0, 0, 0.1)
-    padding-bottom: 15px
-    margin-bottom: 30px
-    flex-wrap: wrap
-
-    .tab__button
-      padding: 12px 24px
-      border: none
-      border-radius: 15px
-      background-color: $bg-color
-      font-size: 16px
-      font-family: "KyivType Sans"
-      color: $text-color
-      box-shadow: -4px -4px 10px rgba(255, 255, 255, 0.8), 4px 4px 10px rgba(163, 177, 198, 0.5)
-      cursor: pointer
-      transition: all 0.3s ease
-      // Стилі для натиснутої (активної) кнопки
-      &.active
-        background-color: $bg-color
-        color: #000
-        box-shadow: inset -4px -4px 10px rgba(255, 255, 255, 0.8), inset 4px 4px 10px rgba(163, 177, 198, 0.5)
-        filter: brightness(0.95)
-
-  .tabs__body
     width: 100%
-    text-align: left
-    animation: fadeIn 0.4s ease
+    margin-top: calc(#{$nav-h} + 36px)
+    @include card
+    padding: 40px 50px 50px
+    box-sizing: border-box
 
-    h3
-      margin-bottom: 15px
-      color: #333
+    .tabs__header
+        display: flex
+        gap: 10px
+        padding-bottom: 22px
+        margin-bottom: 32px
+        flex-wrap: wrap
 
-    p
-      margin-bottom: 15px
-      line-height: 1.6
+        .tab__button
+            padding: 13px 20px
+            border: 1px solid transparent
+            border-radius: $radius-sm
+            background-color: $peri-light
+            font-size: 15px
+            font-family: $display
+            color: $blue
+            cursor: pointer
+            transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease
+            &:hover
+                background-color: $light-40
+            &.active
+                background-color: $blue
+                color: $white
 
-    ul, ol
-      margin-left: 20px
-      margin-bottom: 20px
-      li
-        margin-bottom: 8px
 
-// Анімація для м'якої появи тексту при перемиканні
-@keyframes fadeIn
-  from
-    opacity: 0
-    transform: translateY(5px)
-  to
-    opacity: 1
-    transform: translateY(0)
+    .tabs__body
+        width: 100%
+        text-align: left
+        animation: fadeIn 0.4s ease
+
+        h3
+            margin-bottom: 15px
+            color: $navy
+
+        p
+            margin-bottom: 15px
+            line-height: 1.6
+
+        ul, ol
+            margin-left: 20px
+            margin-bottom: 20px
+            li
+                margin-bottom: 8px
+                line-height: 1.5
+        ul li
+            list-style: square
+            &::marker
+                color: $yellow
 
 .table-container
-      width: 100%
-      margin-top: 25px
-      // Неоморфне заглиблення для контейнера таблиці
-      background-color: $bg-color
-      border-radius: 20px
-      box-shadow: inset -4px -4px 10px rgba(255, 255, 255, 0.7), inset 4px 4px 10px rgba(163, 177, 198, 0.4)
-      padding: 15px 0 0 0
-      overflow-x: auto // Додає горизонтальний скрол на мобільних пристроях
-      box-sizing: border-box
+    width: 100%
+    margin-top: 25px
+    background-color: $white
+    border: 1px solid $line
+    border-radius: $radius-sm
+    overflow-x: auto
+    box-sizing: border-box
 
-      .comparison-table
+    .comparison-table
         width: 100%
         border-collapse: collapse
         text-align: left
 
         th
-          padding: 15px 20px
-          text-align: center
-          border-bottom: 3px solid rgba(0, 0, 0, 0.1) // Чітка лінія під заголовком, як на скріншоті
-          color: #222
+            padding: 16px 20px
+            text-align: center
+            background-color: $blue
+            color: $white
+            font-family: $display
+            font-size: 16px
+            border-right: 1px solid $light
+            &:last-child
+                border-right: 0
 
         td
-          padding: 15px 20px
-          vertical-align: top
-          line-height: 1.6
-          color: #444
+            padding: 15px 20px
+            vertical-align: top
+            line-height: 1.6
+            color: $text-color
+            border-bottom: 1px solid $light-40
 
-        // Чередування кольору рядків (зебра) для кращої читабельності
         tbody tr:nth-child(odd)
-          background-color: rgba(0, 0, 0, 0.03) // Світло-сірий фон для непарних рядків
-          border-radius: 10px // Працює, якщо border-collapse: separate, але в collapse просто задає фон
-
-        tbody tr:nth-child(even)
-          background-color: transparent
+            background-color: $light-10
 
         strong
-          color: #222
-          
+            color: $ink
+
         em
-          color: #555
+            color: $blue
 
 .results__archive-links
     width: 100%
-    min-height: 200px
-    // padding: 50px
-    box-sizing: border-box
-    display: flex
-    flex-wrap: wrap
-    justify-content: space-between
+    display: grid
+    grid-template-columns: repeat(3, 1fr)
+    gap: 16px
     .results__archive-link
-        background-color: $bg-color
-        display: inline-block
-        width: 30%
-        height: 100px
-        box-shadow: -4px -4px 10px rgba(255, 255, 255, 0.8), 4px 4px 10px rgba(163, 177, 198, 0.5)
-        border-radius: 30px
         display: flex
-        justify-content: center
         align-items: center
-        &:hover
-            box-shadow: inset -8px -8px 16px rgba(255, 255, 255, 0.7), inset 8px 8px 16px rgba(163, 177, 198, 0.6)
-            filter: brightness(0.95)
+        justify-content: space-between
+        min-height: 96px
+        padding: 0 24px
+        box-sizing: border-box
+        background-color: $peri-light
+        border-radius: $radius-sm
+        text-decoration: none
+        transition: background-color 0.2s ease
+        .archive_text
+            font-family: $display
+            color: $blue
         .archive_text::after
             content: ""
             display: inline-block
-            width: 1em
-            height: 1em
-            margin-left: 0.4em
+            width: 0.9em
+            height: 0.9em
+            margin-left: 0.5em
             background: url('img/arrow.svg')
             background-repeat: no-repeat
             background-size: contain
+        &:hover
+            background-color: $yellow
 
-@media screen and ( max-width: 1100px )
+// ---------- Команда ----------
+.team
+    width: 100%
+    display: grid
+    grid-template-columns: repeat(3, 1fr)
+    gap: 24px
+    .team__member
+        width: 100%
+        background-color: $peri-light
+        border-radius: $radius-sm
+        overflow: hidden
+        display: flex
+        flex-direction: column
+        box-sizing: border-box
+        .team-info
+            width: 100%
+            padding: 6px 20px 20px
+            box-sizing: border-box
+        .team-name
+            font-size: 21px !important
+            color: $blue
+            margin-top: 16px !important
+            margin-bottom: 6px !important
+        .team-position
+            font-size: 15px
+            margin-bottom: 0 !important
+        .team-photo
+            width: 100%
+            aspect-ratio: 1 / 1
+            background-color: $light-40
+            background-size: cover
+            background-position: center
+        &:nth-child(1) .team-photo
+            background-image: url('img/mamentovych1.png')
+        &:nth-child(2) .team-photo
+            background-image: url('img/cheishvili.jpg')
+            background-position-y: top
+        &:nth-child(3) .team-photo
+            background-image: url('img/kosheliuk.jpg')
+        &:nth-child(4) .team-photo
+            background-image: url('img/melnyk.jpeg')
+        &:nth-child(5) .team-photo
+            background-image: url('img/lehka.PNG')
+            background-position-y: 15%
+
+// ---------- Плаваюча кнопка ----------
+.floating-form-btn
+    position: fixed
+    bottom: 28px
+    right: 28px
+    display: flex
+    align-items: center
+    gap: 10px
+    padding: 16px 24px
+    background-color: $yellow
+    color: $ink
+    font-family: $display
+    font-size: 17px
+    text-decoration: none
+    border-radius: $radius-sm
+    box-shadow: 0 14px 30px -14px rgba($black, 0.5)
+    z-index: 1000
+    transition: transform 0.2s ease, background-color 0.2s ease
+    &::after
+        content: "↗"
+    &:hover
+        transform: translateY(-3px)
+        background-color: $white
+
+// ---------- Зворотний відлік ----------
+.countdown-container
+    width: 100%
+    margin-top: 24px
+    @include card
+    padding: 44px 50px
+    box-sizing: border-box
+    display: flex
+    flex-direction: column
+    align-items: center
+    text-align: center
+
+    .countdown-heading
+        margin-bottom: 30px
+        font-size: 24px
+
+    .countdown-wrapper
+        display: flex
+        align-items: center
+        justify-content: center
+        gap: 12px
+        flex-wrap: wrap
+
+    .countdown-item
+        display: flex
+        flex-direction: column
+        align-items: center
+        justify-content: center
+        background-color: $blue
+        width: 104px
+        height: 104px
+        border-radius: $radius-sm
+
+
+        .countdown-value
+            font-family: $display
+            font-size: 38px
+            color: $white
+            margin-bottom: 6px
+
+        .countdown-label
+            font-family: $body
+            font-size: 13px
+            color: $light-60
+
+    .countdown-separator
+        font-family: $display
+        font-size: 32px
+        color: $yellow
+
+// =====================================================================
+//  Адаптивність
+// =====================================================================
+.burger-menu
+    display: none
+
+.mobile-menu
+    display: none
+
+@media screen and (max-width: 1100px)
     .padding
-        padding: 0 50px
+        padding: 0 40px
+        max-width: none
     .nav
-        width: calc( 100% - 100px )
-    .header::before
-         margin: 140px 50px 20px 50px
+        width: calc(100% - 80px)
+    .header
+        grid-template-columns: 1fr
+        .header__photo
+            min-height: 340px
+    .materials
+        grid-template-columns: repeat(2, 1fr)
 
 @media screen and (max-width: 1000px)
     .categories__content
         grid-template-columns: repeat(2, 1fr)
-    .nav .links
-        width: 60%
+    .nav .links ul li a
+        padding: 10px 10px
 
-@media screen and ( max-width: 900px )
-    .materials .materials__element
-        width: 45%
-    .results__archive-links .results__archive-link
-        width: 45%
-    .partners .partners__element
-        width: 30%
+@media screen and (max-width: 900px)
+    .results__archive-links
+        grid-template-columns: repeat(2, 1fr)
     .footer .footer__element
         width: 45%
-    .updates
-        height: 250px
+        margin-bottom: 20px
+    .team
+        grid-template-columns: repeat(2, 1fr)
 
-.burger-menu
-    display: none
-
-.mobile-menu 
-    display: none
-
-@media screen and ( max-width: 800px )
+@media screen and (max-width: 800px)
     .padding
-        padding: 0 20px
-    .header
-        padding: 50px 30px
-        &::before
-         margin: 140px 20px 20px 20px
-    .table-container
-        // Сам контейнер залишається на 100% ширини екрану, 
-        // але ми змушуємо внутрішню таблицю бути ширшою
-        .comparison-table
-            min-width: 800px // Вкажіть тут комфортну ширину (наприклад, 700px або 800px). 
-            // Якщо таблиця буде ширшою за екран, контейнер автоматично увімкне скрол.
+        padding: 0 16px
+        max-width: none
     .nav
-        width: calc( 100% - 40px )
-        // Ховаємо звичайне меню
+        width: calc(100% - 32px)
+        top: 12px
         .links
             display: none
-            
-        // Стилізація кнопки бургера
+
         .burger-menu
             display: flex
             flex-direction: column
             justify-content: space-between
-            width: 30px
-            height: 21px
+            width: 28px
+            height: 20px
+            padding: 12px
+            margin-right: 12px
+            background-color: $peri-light
+            border-radius: $radius-sm
             cursor: pointer
-            margin-right: 20px
-            z-index: 101 // Має бути над випадаючим меню
+            z-index: 101
 
             span
                 display: block
                 height: 3px
                 width: 100%
-                background-color: $blue // Використовуємо вашу змінну кольору
-                border-radius: 3px
+                background-color: $blue
                 transition: all 0.3s ease
 
-            // Анімація перетворення на хрестик
             &.open
                 span:nth-child(1)
-                    transform: translateY(9px) rotate(45deg)
+                    transform: translateY(8.5px) rotate(45deg)
                 span:nth-child(2)
                     opacity: 0
                 span:nth-child(3)
-                    transform: translateY(-9px) rotate(-45deg)
+                    transform: translateY(-8.5px) rotate(-45deg)
 
-        // Випадаюче мобільне меню
         .mobile-menu
             position: absolute
-            top: 110px // Опускаємо під навігаційний блок
+            top: calc(100% + 8px)
             right: 0
-            width: 250px
-            background-color: $bg-color
-            border-radius: 20px
-            box-shadow: -8px -8px 16px rgba(255, 255, 255, 0.7), 8px 8px 16px rgba(163, 177, 198, 0.6)
-            padding: 20px
+            width: 260px
+            background-color: $paper
+            border: 1px solid $line
+            border-radius: $radius
+            box-shadow: 0 20px 40px -20px rgba($black, 0.45)
+            padding: 10px
             box-sizing: border-box
             display: flex
             flex-direction: column
-            align-items: center
-            gap: 15px
-            
-            // За умовчанням приховане
             opacity: 0
             visibility: hidden
-            transform: translateY(-15px)
-            transition: all 0.3s ease
+            transform: translateY(-10px)
+            transition: all 0.25s ease
             pointer-events: none
 
-            // Відкритий стан
             &.active
                 opacity: 1
                 visibility: visible
@@ -788,262 +1315,128 @@ $light-blue: #7AADDC
             ul
                 display: flex
                 flex-direction: column
-                align-items: center
-                gap: 15px
+                gap: 4px
                 width: 100%
 
                 li
                     width: 100%
-                    text-align: center
-                    
+
                     a
                         display: block
                         text-decoration: none
-                        color: #000000
-                        font-family: "KyivType Sans"
+                        color: $ink
+                        font-family: $display
                         font-size: 18px
-                        font-weight: 500
-                        transition: all 0.3s ease-in-out
-                        padding: 10px 0
+                        padding: 14px 16px
+                        border-radius: $radius-sm
+                        transition: background-color 0.2s ease
                         &:hover
-                            color: $yellow
+                            background-color: $peri-light
                     .active
-                        color: $yellow
+                        background-color: $blue
+                        color: $white
 
-@media screen and ( max-width: 700px )
-    .materials .materials__element
-        width: 100%
-    .results__archive-links .results__archive-link
-        width: 100%
-    .partners .partners__element
-        width: 45%
+
+    .header .header__panel
+        padding: 40px 28px 36px
+    .table-container .comparison-table
+        min-width: 800px
+    .timeline-container, .materials, .categories__content, .participants__content, .countdown-container
+        padding: 36px 26px
+    .partners
+        padding: 32px 26px
+    .footer
+        padding: 0 26px 36px
+        .footer__tiles
+            width: calc(100% + 52px)
+            height: 70px
+            margin: 0 -26px 32px
+            .tiles__item
+                flex: 0 0 64px
+
+@media screen and (max-width: 700px)
+    .materials
+        grid-template-columns: 1fr
+        .materials__list
+            margin: 0 -14px
+            padding: 18px 12px 16px
+            .materials__list-header
+                margin-bottom: 14px
+                padding-left: 4px
+            .materials__docs
+                grid-template-columns: 1fr
+                gap: 8px
+            .materials__doc
+                gap: 12px
+                min-height: 54px
+                padding: 10px 12px
+                .materials__type
+                    min-width: 44px
+                    font-size: 11px
+                .materials__doc-title
+                    font-size: 15px
+            .materials__folder
+                padding-left: 4px
+        .materials__element
+            min-height: 130px
+    .results__archive-links
+        grid-template-columns: 1fr
     .footer .footer__element
         width: 100%
-        &:nth-child(2)
-            margin-top: 20px
-        &:nth-child(3)
-            margin-top: 20px
     .categories__content
-        grid-template-columns: repeat(1, 1fr)        
-            
-@media screen and ( max-width: 650px )
-    .header .header__heading
-        font-size: 25px
-    .header .header__text
-        font-size: 18px
-
-@media screen and ( max-width: 600px )
+        grid-template-columns: 1fr
+    .timeline-heading, .materials__heading, .partners__heading, .categories__heading, .countdown-heading
+        font-size: 28px
     .updates
-        height: 300px
-    .nav .logo
-        width: 25%
-    
-@media screen and ( max-width: 500px )
-    .nav .logo
-        width: 30%
-    .timeline-container
-        padding: 50px 30px
-
-@media screen and ( max-width: 400px )
-    .nav
-        height: 70px
-        .logo
-            height: 70px
-        .mobile-menu
-            top: 80px
-    .header
-        height: calc(100vh - 130px)
-        margin-top: 110px
         &::before
-            margin: 110px 20px 20px 20px
-    .partners .partners__element
-        width: 100%
-    .categories__content
-        margin-top: 110px
-    .participants__content
-        margin-top: 110px
-    .updates
-        height: 350px
-    .materials, .partners, .footer, .categories__content, .participants__content
-        padding: 30px
+            left: 20px
+            top: 20px
+        .swiper-slide
+            padding: 60px 20px 60px
+        .swiper-pagination
+            padding-left: 20px
+    .timeline-desc
+        font-size: 16px
+    .categories__content .categories__heading
+        font-size: 26px
+    .updates .heading
+        font-size: 21px
+    .swiper-slide
+        padding: 64px 20px 60px
 
-@media screen and ( max-width: 385px )
-    .header
-        padding: 20px
-    
-
-.team
-    width: 100%
-    min-height: 250px
-    display: grid
-    grid-template-columns: repeat(3, 1fr) 
-    gap: 30px
-    .team__member
-        width: 100%
-        min-height: 220px
-        background-color: $bg-color
-        box-shadow: -8px -8px 16px rgba(255, 255, 255, 0.7), 8px 8px 16px rgba(163, 177, 198, 0.6)
-        border-radius: 30px
-        display: flex
-        flex-direction: column
-        align-items: center
-        padding: 20px
-        box-sizing: border-box
-        .team-info
-            width: 100%
-        .team-photo
-            width: calc(100% - 40px)
-            aspect-ratio: 1 / 1
-            border-radius: 15px
-            background-position: center
-            margin-bottom: 15px
-            box-sizing: border-box
-            padding: 0     
-        &:nth-child(1)
-            .team-photo
-                background-image: url('img/mamentovych1.png')
-                background-size: cover
-        &:nth-child(2)
-            .team-photo
-                background-image: url('img/cheishvili.jpg')
-                background-size: cover
-                background-position-y: top
-        &:nth-child(3)
-            .team-photo
-                background-image: url('img/kosheliuk.jpg')
-                background-size: cover
-        &:nth-child(4)
-            .team-photo
-                background-image: url('img/melnyk.jpeg')
-                background-size: cover
-        &:nth-child(5)
-            .team-photo
-                background-image: url('img/lehka.PNG')
-                background-size: cover
-                background-position-y: -15px
-
-@media screen and ( max-width: 930px )
+@media screen and (max-width: 630px)
     .team
-        grid-template-columns: repeat(2, 1fr)
+        grid-template-columns: 1fr
 
-@media screen and ( max-width: 630px )
-    .team
-        grid-template-columns: repeat(1, 1fr)
-    
-.header__button
-    display: inline-block
-    padding: 15px 25px
-    box-sizing: border-box
-    background-color: $yellow
-    border-radius: 20px
-    box-shadow: -8px -8px 16px rgba(255, 255, 255, 0.3), 8px 8px 16px rgba(163, 177, 198, 0.1)
-    text-transform: uppercase
-    &:hover
-        box-shadow: inset -8px -8px 16px rgba(255, 255, 255, 0.3), inset 8px 8px 16px rgba(163, 177, 198, 0.1)
-        filter: brightness(0.95)
-
-.floating-form-btn
-    position: fixed
-    bottom: 30px
-    right: 30px
-    background-color: $blue
-    color: #ffffff
-    font-family: "KyivType Sans"
-    font-size: 18px
-    padding: 15px 25px
-    border-radius: 30px
-    text-decoration: none
-    // Додаємо вашу фірмову неоморфну тінь
-    box-shadow: -4px -4px 10px rgba(255, 255, 255, 0.7), 4px 4px 10px rgba(163, 177, 198, 0.6) 
-    z-index: 1000
-    transition: all 0.3s ease
-    display: flex
-    align-items: center
-    justify-content: center
-
-    &:hover
-        transform: translateY(-5px)
-        color: #ffffff
-        box-shadow: -6px -6px 15px rgba(255, 255, 255, 0.8), 6px 6px 15px rgba(163, 177, 198, 0.7)
-        background-color: $light-blue
-
-// Адаптація для мобільних екранів
-@media screen and (max-width: 800px)
-    .floating-form-btn
-        bottom: 20px
-        right: 20px
-        padding: 12px 20px
-        font-size: 18px
-
-.countdown-container
-  width: 100%
-  margin-top: 20px
-  background-color: $bg-color
-  border-radius: 30px
-  box-shadow: -8px -8px 16px rgba(255, 255, 255, 0.7), 8px 8px 16px rgba(163, 177, 198, 0.6)
-  padding: 40px 50px
-  box-sizing: border-box
-  display: flex
-  flex-direction: column
-  align-items: center
-  text-align: center
-
-  .countdown-heading
-    margin-bottom: 30px
-    color: $text-color
-
-  .countdown-wrapper
-    display: flex
-    align-items: center
-    justify-content: center
-    gap: 15px
-    flex-wrap: wrap
-
-  .countdown-item
-    display: flex
-    flex-direction: column
-    align-items: center
-    justify-content: center
-    background-color: $bg-color
-    width: 100px
-    height: 100px
-    border-radius: 20px
-    box-shadow: inset -4px -4px 10px rgba(255, 255, 255, 0.7), inset 4px 4px 10px rgba(163, 177, 198, 0.4)
-    
-    .countdown-value
-      font-family: "KyivType Sans"
-      font-size: 32px
-      font-weight: bold
-      color: $blue
-      margin-bottom: 5px
-
-    .countdown-label
-      font-family: "eUkraine"
-      font-size: 14px
-      color: $text-color
-
-  .countdown-separator
-    font-family: "KyivType Sans"
-    font-size: 32px
-    font-weight: bold
-    color: $blue
-    margin-top: -20px // Вирівнювання двокрапки відносно цифр
-
-// Адаптація для мобільних пристроїв
 @media screen and (max-width: 600px)
-  .countdown-container
-    padding: 30px 20px
+    .countdown-container
+        .countdown-item
+            width: 70px
+            height: 70px
+            .countdown-value
+                font-size: 26px
+            .countdown-label
+                font-size: 11px
+        .countdown-separator
+            font-size: 24px
 
-    .countdown-item
-      width: 70px
-      height: 70px
-      
-      .countdown-value
-        font-size: 24px
-      
-      .countdown-label
-        font-size: 11px
-
-    .countdown-separator
-      font-size: 24px
-      margin-top: -15px
+@media screen and (max-width: 500px)
+    .nav
+        height: 68px
+        .logo
+            width: 130px
+            margin-left: 14px
+    .header, .categories__content, .participants__content
+        margin-top: 96px
+    .header .header__kicker
+        font-size: 18px
+    .header .header__text
+        font-size: 16px
+    .header .header__photo
+        min-height: 240px
+    .timeline-item
+        gap: 16px
+    .timeline-title
+        font-size: 18px
+    .partners .partners__element
+        width: 45%

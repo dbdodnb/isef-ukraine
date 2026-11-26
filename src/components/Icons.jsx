@@ -21,13 +21,14 @@ export const Dots = icon(920.5273, "M 1049.597656 95.867188 C 1049.597656 115.75
 // Чергування як у фірмовій смузі: стрілка (темна), шестерня (світла),
 // колба (темна), крапки (світла) — і далі по колу.
 const pattern = [Arrow, Gear, Flask, Dots];
+const names = ["arrow", "gear", "flask", "dots"];
 
 export const Tiles = ({ count = 4, className = "" }) => (
     <div className={`tiles ${className}`} aria-hidden="true">
         {Array.from({ length: count }, (_, i) => {
             const Icon = pattern[i % pattern.length];
             return (
-                <div key={i} className={`tiles__item ${i % 2 === 0 ? "tiles__item--filled" : ""}`}>
+                <div key={i} data-icon={names[i % names.length]} className={`tiles__item ${i % 2 === 0 ? "tiles__item--filled" : ""}`}>
                     <Icon />
                 </div>
             );

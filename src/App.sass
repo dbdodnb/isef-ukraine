@@ -170,6 +170,71 @@ a.text, .text a
             background-color: $blue
             color: $tile-light
 
+// ---------- Анімації під час прокрутки (див. components/ScrollEffects.jsx) ----------
+// Етапи таймлайну з'являються по черзі. Клас .reveal додає скрипт,
+// тож без JavaScript усе видно одразу
+.timeline-item.reveal
+    opacity: 0
+    transform: translateY(36px)
+    transition: opacity 0.7s ease, transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1)
+    transition-delay: var(--reveal-delay, 0ms)
+    &.is-visible
+        opacity: 1
+        transform: none
+
+// Лінія таймлайну «малюється» згори вниз, кружечок етапу «вистрибує»
+.timeline-item
+    .timeline-connector
+        transform-origin: top
+        transition: transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) 0.25s
+    &.reveal .timeline-connector
+        transform: scaleY(0)
+    &.reveal.is-visible .timeline-connector
+        transform: scaleY(1)
+    &.reveal .timeline-icon
+        transform: scale(0.3)
+        transition: transform 0.5s cubic-bezier(0.3, 1.6, 0.5, 1) calc(var(--reveal-delay, 0ms) + 0.1s)
+    &.reveal.is-visible .timeline-icon
+        transform: none
+
+// Перший блок: текст трохи відстає й тьмяніє, коли блок іде вгору
+.header__panel
+    .header__kicker, .header__heading, .header__text, .header__status
+        translate: 0 calc(var(--hero-p, 0) * -60px)
+        opacity: calc(1 - var(--hero-p, 0) * 0.9)
+
+// Меню стає компактнішим після прокрутки
+.nav
+    transition: height 0.3s ease, top 0.3s ease, box-shadow 0.3s ease
+    .logo
+        transition: width 0.3s ease
+body.is-scrolled .nav
+    top: 10px
+    height: 68px
+    box-shadow: 0 16px 34px -20px rgba($black, 0.45)
+    .logo
+        width: 140px
+
+// Шестерні в смугах плиток обертаються під час прокрутки
+.tiles__item[data-icon="gear"] svg
+    transform: rotate(calc(var(--scroll, 0) * 0.3deg))
+    will-change: transform
+
+// «Зменшити рух» у системі — вимикаємо рухоме
+@media (prefers-reduced-motion: reduce)
+    .timeline-item.reveal
+        opacity: 1
+        transform: none
+        transition: none
+    .tiles__item[data-icon="gear"] svg, .header__photo::before
+        transform: none
+    .header__panel
+        .header__kicker, .header__heading, .header__text, .header__status
+            translate: none
+            opacity: 1
+    .nav, .nav .logo
+        transition: none
+
 // ---------- Навігація ----------
 .nav
     position: fixed
@@ -316,10 +381,18 @@ a.text, .text a
         position: relative
         flex: 1
         min-height: 320px
-        background-image: url('img/header_bg.jpeg')
-        background-repeat: no-repeat
-        background-size: cover
-        background-position: center
+        overflow: hidden
+        // Фото — окремий шар, що рухається повільніше за сторінку (паралакс)
+        &::before
+            content: ""
+            position: absolute
+            inset: -12% 0
+            background-image: url('img/header_bg.jpeg')
+            background-repeat: no-repeat
+            background-size: cover
+            background-position: center
+            transform: translateY(calc(var(--hero-p, 0) * 22%)) scale(calc(1 + var(--hero-p, 0) * 0.08))
+            will-change: transform
 
     .header__tiles
         flex-shrink: 0
@@ -1426,6 +1499,10 @@ a.text, .text a
         .logo
             width: 130px
             margin-left: 14px
+    body.is-scrolled .nav
+        height: 60px
+        .logo
+            width: 112px
     .header, .categories__content, .participants__content
         margin-top: 96px
     .header .header__kicker

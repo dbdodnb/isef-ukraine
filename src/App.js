@@ -13,11 +13,13 @@ import Results from './pages/Results';
 
 import './App.css';
 import ScrollToTop from './components/ScrollToTop';
+import ScrollEffects from './components/ScrollEffects';
 
 function App() {
   return (
     <Router>
       <ScrollToTop />
+      <ScrollEffects />
       <div className='App'>
         <Nav />
         {/* <a 

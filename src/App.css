@@ -120,6 +120,78 @@ a.text:hover, .text a:hover {
   color: #7AADDC;
 }
 
+.timeline-item.reveal {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 0.7s ease, transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.timeline-item.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.timeline-item .timeline-connector {
+  transform-origin: top;
+  transition: transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) 0.25s;
+}
+.timeline-item.reveal .timeline-connector {
+  transform: scaleY(0);
+}
+.timeline-item.reveal.is-visible .timeline-connector {
+  transform: scaleY(1);
+}
+.timeline-item.reveal .timeline-icon {
+  transform: scale(0.3);
+  transition: transform 0.5s cubic-bezier(0.3, 1.6, 0.5, 1) calc(var(--reveal-delay, 0ms) + 0.1s);
+}
+.timeline-item.reveal.is-visible .timeline-icon {
+  transform: none;
+}
+
+.header__panel .header__kicker, .header__panel .header__heading, .header__panel .header__text, .header__panel .header__status {
+  translate: 0 calc(var(--hero-p, 0) * -60px);
+  opacity: calc(1 - var(--hero-p, 0) * 0.9);
+}
+
+.nav {
+  transition: height 0.3s ease, top 0.3s ease, box-shadow 0.3s ease;
+}
+.nav .logo {
+  transition: width 0.3s ease;
+}
+
+body.is-scrolled .nav {
+  top: 10px;
+  height: 68px;
+  box-shadow: 0 16px 34px -20px rgba(2, 10, 10, 0.45);
+}
+body.is-scrolled .nav .logo {
+  width: 140px;
+}
+
+.tiles__item[data-icon=gear] svg {
+  transform: rotate(calc(var(--scroll, 0) * 0.3deg));
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .timeline-item.reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .tiles__item[data-icon=gear] svg, .header__photo::before {
+    transform: none;
+  }
+  .header__panel .header__kicker, .header__panel .header__heading, .header__panel .header__text, .header__panel .header__status {
+    translate: none;
+    opacity: 1;
+  }
+  .nav, .nav .logo {
+    transition: none;
+  }
+}
 .nav {
   position: fixed;
   top: 16px;
@@ -274,10 +346,18 @@ a.text:hover, .text a:hover {
   position: relative;
   flex: 1;
   min-height: 320px;
+  overflow: hidden;
+}
+.header .header__photo::before {
+  content: "";
+  position: absolute;
+  inset: -12% 0;
   background-image: url("img/header_bg.jpeg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  transform: translateY(calc(var(--hero-p, 0) * 22%)) scale(calc(1 + var(--hero-p, 0) * 0.08));
+  will-change: transform;
 }
 .header .header__tiles {
   flex-shrink: 0;
@@ -1579,6 +1659,12 @@ a.text:hover, .text a:hover {
   .nav .logo {
     width: 130px;
     margin-left: 14px;
+  }
+  body.is-scrolled .nav {
+    height: 60px;
+  }
+  body.is-scrolled .nav .logo {
+    width: 112px;
   }
   .header, .categories__content, .participants__content {
     margin-top: 96px;
